@@ -13,14 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');   
+   
 Route::get('login', 'AuthController@login')->name('login');
 Route::get('register', 'AuthController@register')->name('register');
 Route::post('login', 'AuthController@DoLogin')->name('do.login');
 Route::post('register', 'AuthController@DoRegister')->name('do.register');
 Route::get('logout', 'AuthController@logout')->name('logout');
+
+Route::get('/', function(){
+    return view('frontend.home');
+})->name('home');
+
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('panel')->group(function () {
