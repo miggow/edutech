@@ -1,8 +1,8 @@
 @extends('panel.app')
 @section('content')
-    <h4 class="fw-bold py-3 mb-4">Danh sách người dùng</h4>
 
-    <div class="card">
+<div class="card p-4">
+        <h4 class="fw-bold py-3 mb-4">Danh sách người dùng</h4>
         <div class="table-responsive text-nowrap">
             <table class="table " id="user-table">
                 <thead class="table-light">
@@ -85,9 +85,9 @@
                     <div class="col mb-3">
                         <label for="status" class="form-label">Trạng thái</label>
                         <select name="status"class="form-select" id="status" aria-label="Default select example">
-                            <option value="" disabled>Chọn trạng thái</option>
-                            <option value="0">Ngưng kích hoạt</option>
+                            <option value="{{ $user->status }}" disabled>Chọn trạng thái</option>
                             <option value="1">Kích hoạt</option>
+                            <option value="0">Ngưng kích hoạt</option>
                         </select>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <div class="col mb-3">
                         <label for="role" class="form-label">Chức vụ</label>
                         <select name="role"class="form-select" id="role" aria-label="Default select example">
-                            <option value="" disabled>Chọn chức vụ</option>
+                            <option value="{{ $user->role }} " disabled>Chọn chức vụ</option>
                             <option value="0">Học sinh</option>
                             <option value="1">Giáo viên</option>
                             <option value="2">Quản trị viên</option>

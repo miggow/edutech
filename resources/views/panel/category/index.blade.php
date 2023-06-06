@@ -49,10 +49,12 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item edit-category" data-bs-toggle="modal"
-                                                        data-bs-target="#edit-category" data-id="{{ $category->id }}" data-name="{{ $category->name }}"><i
+                                                        data-bs-target="#edit-category" data-id="{{ $category->id }}"
+                                                        data-name="{{ $category->name }}"><i
                                                             class="bx bx-edit-alt me-1"></i>Edit</a>
 
-                                                    <a class="dropdown-item" href="{{ route('category.destroy', $category->id) }}"><i
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('category.destroy', $category->id) }}"><i
                                                             class="bx bx-trash me-1"></i>
                                                         Delete</a>
                                                 </div>
@@ -110,7 +112,7 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="name1" class="form-label">Tên danh mục</label>
-                        <input type="text" id="name1" class="form-control" name='name1' 
+                        <input type="text" id="name1" class="form-control" name='name1'
                             placeholder="Enter Name" />
                     </div>
                 </div>
@@ -125,7 +127,7 @@
     </div>
 </div>
 @section('js')
-<script>
+    <script>
         $(document).ready(function() {
             $('.edit-category').click(function() {
                 var id = $(this).data('id');
@@ -137,11 +139,11 @@
                 // Lấy ID người dùng từ thuộc tính data-id của nút "Save changes"
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/panel/category/update/' +id,
+                    url: '/panel/category/update/' + id,
                     type: 'POST',
                     data: {
                         "id": id,
-                        "name":name,
+                        "name": name,
                         "_token": "{{ csrf_token() }}",
                     },
                     success: function(response) {

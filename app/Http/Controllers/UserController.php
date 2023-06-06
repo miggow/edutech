@@ -19,6 +19,8 @@ class UserController extends Controller
         $user->status = $request->status;
         $user->role = $request->role;
         $user->save();
+        return redirect()->back()->with('success', ['status' => 1, 'message' => 'Cập nhật thành công!']);
+
     }
     public function list()
     {
@@ -39,6 +41,6 @@ class UserController extends Controller
         $user->fill($request->only(['name', 'phone', 'email']));
         $user->address = $request->address;
         $user->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', ['status' => 1, 'message' => 'Cập nhật thành công!']);
     }
 }
