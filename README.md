@@ -1,1 +1,1 @@
-<h2>Created by Nguyen Minh and Huynh Ngoc Bao</h2>
+<h1>Created by Nguyen Minh and Huynh Ngoc Bao</h1>
