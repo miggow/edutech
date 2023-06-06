@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-xl-9">
-            <div class="progress">
+            <div class="progress mb-3">
                 <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                     aria-valuemax="100">
                     0%
