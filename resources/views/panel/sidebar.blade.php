@@ -1,3 +1,10 @@
+@php
+    if (Auth::user()->role == 2) {
+        $isAdmin = 1;
+    } else {
+        $isAdmin = 0;
+    }
+@endphp
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a href="{{ url('/') }}" class="app-brand-link">
@@ -23,23 +30,26 @@
 
 
         {{-- Khóa học --}}
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Học vấn</span>
-        </li>
+        @if ($isAdmin)
+            <li class="menu-header small text-uppercase">
+                <span class="menu-header-text">Học vấn</span>
+            </li>
 
-        <li class="menu-item">
-            <a href="{{ route('course.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bxs-book"></i>
-                <div data-i18n="Account Settings">Khóa học</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ route('category.index') }}" class="menu-link">
-                <i class='menu-icon tf-icons bx bx-category'></i>
-                <div data-i18n="Account">Danh mục</div>
-            </a>
-            </a>
-        </li>
+            <li class="menu-item">
+                <a href="{{ route('course.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-book"></i>
+                    <div data-i18n="Account Settings">Khóa học</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('category.index') }}" class="menu-link">
+                    <i class='menu-icon tf-icons bx bx-category'></i>
+                    <div data-i18n="Account">Danh mục</div>
+                </a>
+                </a>
+            </li>
+        @endif
+
         {{-- Lớp học --}}
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Lớp học</span>
@@ -52,15 +62,30 @@
             </a>
         </li>
 
-        <!-- User -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Người dùng</span></li>
-        <!-- Cards -->
+        {{-- Order --}}
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Order</span>
+        </li>
+
         <li class="menu-item">
-            <a href="{{ route('user.index') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Basic">Danh sách người dùng</div>
+            <a href="{{ route('order.index') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bxs-store'></i>
+                <div data-i18n="Account Settings">Khóa học đã mua</div>
             </a>
         </li>
+
+        @if ($isAdmin)
+            <!-- User -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Người dùng</span></li>
+            <!-- Cards -->
+            <li class="menu-item">
+                <a href="{{ route('user.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-user"></i>
+                    <div data-i18n="Basic">Danh sách người dùng</div>
+                </a>
+            </li>
+        @endif
+
 
 
         <!-- Misc -->
@@ -73,7 +98,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{ route('logout') }}"  class="menu-link">
+            <a href="{{ route('logout') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-log-out"></i>
                 <div data-i18n="Documentation">Đăng xuất</div>
             </a>

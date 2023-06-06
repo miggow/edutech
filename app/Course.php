@@ -33,4 +33,20 @@ class Course extends Model
     {
         return $this->hasMany(Module::class,'course_id');
     }
+    public function instructor()
+    {
+        return $this->belongsTo(User::class, 'instructor_id');
+    }
+     public function lessons()
+    {
+        return $this->hasManyThrough(Lesson::class, Module::class);
+    }
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'course_id');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class,'course_id');
+    }
 }

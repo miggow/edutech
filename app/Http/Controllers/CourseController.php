@@ -61,7 +61,7 @@ class CourseController extends Controller
         }
         $course->fill($request->only(['instructor_id',' category_id', 'title','price','description']));
         $course->save();
-        return redirect()->route('course.index');
+        return redirect()->route('course.index')->with('success', ['status' => 1, 'message' => 'Cập nhật thành công!']);
     }
     public function destroy($id)
     {

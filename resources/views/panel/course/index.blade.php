@@ -39,10 +39,10 @@
                                 </tr>
                                 @foreach ($courses as $course)
                                     <tr>
-
                                         <td>
                                             <strong>
-                                                <a href="{{ route('learn.index', $course->id) }}">{{ $course->title }}</a>
+                                                {{-- <a href="{{ route('learn.index', $course->id) }}">{{ $course->title }}</a> --}}
+                                                <a href="{{ route('FE.course_detail', $course->id) }}">{{ $course->title }}</a>
                                             </strong>
                                             <div class="text-small">
                                                 {{ empty($course->category) ? '' : $course->category->name }}</div>

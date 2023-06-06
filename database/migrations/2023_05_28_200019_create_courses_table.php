@@ -20,7 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('background')->nullable();
             $table->string('video')->nullable();
             $table->integer('status')->default(1);
-            $table->string('description', 500);
+            $table->longText('description');
             $table->string('price');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
