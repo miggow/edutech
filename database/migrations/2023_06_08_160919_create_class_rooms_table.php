@@ -15,6 +15,7 @@ class CreateClassRoomsTable extends Migration
     {
         Schema::create('class_rooms', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
             $table->timestamps();
         });
     }
