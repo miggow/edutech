@@ -57,18 +57,18 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Họ và tên</label>
-                                <input type="text" class="form-control" id="name" name="name"
+                                <input required type="text" class="form-control" id="name" name="name"
                                     placeholder="Nhập họ và tên của bạn" autofocus />
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Tài khoản Email:</label>
-                                <input type="text" class="form-control" id="email" name="email"
+                                <input required type="text" class="form-control" id="email" name="email"
                                     placeholder="Nhập tài khoản Email của bạn" />
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">Mật khẩu:</label>
                                 <div class="input-group input-group-merge">
-                                    <input type="password" id="password" class="form-control" name="password"
+                                    <input required type="password" id="password" class="form-control" name="password"
                                         placeholder="*********"
                                         aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>

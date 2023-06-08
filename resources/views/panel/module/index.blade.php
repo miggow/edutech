@@ -83,7 +83,7 @@
                         <div class="col mb-3">
                             <label for="name" class="form-label">Tên module:</label>
 
-                            <input type="text" id="name" class="form-control" name='name'
+                            <input required type="text" id="name" class="form-control" name='name'
                                 placeholder="Enter Name" />
                         </div>
                     </div>
@@ -96,13 +96,13 @@
                                         <i class='bx bx-sm bxs-time'></i>
                                     </span>
                                 </div>
-                                <input type="text" name="duration"
+                                <input required type="text" name="duration"
                                     class="form-control @error('duration')  is-invalid @enderror" />
                             </div>
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="course_id" value="{{ $course->id }}">
+                <input required type="hidden" name="course_id" value="{{ $course->id }}">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close

@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="name" class="form-label">Tên danh mục</label>
-                            <input type="text" id="name" class="form-control" name='name'
+                            <input required type="text" id="name" class="form-control" name='name'
                                 placeholder="Enter Name" />
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="name1" class="form-label">Tên danh mục</label>
-                        <input type="text" id="name1" class="form-control" name='name1'
+                        <input required type="text" id="name1" class="form-control" name='name1'
                             placeholder="Enter Name" />
                     </div>
                 </div>

@@ -38,7 +38,7 @@
 
                                         <div class="form-group mb-3">
                                             <label class="input-label">Tiêu đề</label>
-                                            <input type="text" name="title" value="{{ $course->title }}"
+                                            <input required type="text" name="title" value="{{ $course->title }}"
                                                 class="form-control @error('title')  is-invalid @enderror" placeholder="" />
                                             @error('title')
                                                 <div class="invalid-feedback">
@@ -72,7 +72,7 @@
                                             <label class="input-label">Ảnh thu nhỏ (thumbnail)</label>
                                             <div class="input-group">
                                                 <div class="form-group">
-                                                    <input type="file" name="image" class="form-control"
+                                                    <input required type="file" name="image" class="form-control"
                                                         id="image">
                                                 </div>
                                             </div>
@@ -89,7 +89,7 @@
                                             <label class="input-label">Ảnh bìa</label>
                                             <div class="input-group">
                                                 <div class="form-group">
-                                                    <input type="file" value="{{ asset($course->background) }}"
+                                                    <input required type="file" value="{{ asset($course->background) }}"
                                                         name="background" class="form-control" id="background">
 
                                                 </div>
@@ -108,7 +108,7 @@
                                             @endif
                                             <div class="input-group">
                                                 <div class="form-group">
-                                                    <input type="file" name="video" class="form-control" id="video"
+                                                    <input required type="file" name="video" class="form-control" id="video"
                                                         value="{{ $course->video ?? '' }}">
                                                 </div>
 
@@ -138,7 +138,7 @@
                                         <div class="form-group mb-3">
                                             <label class="input-label">Giá</label>
                                             {{-- value="{{ !empty($webinar) ? $webinar->price : old('price') }}" --}}
-                                            <input type="text" name="price" value="{{ $course->price }}"
+                                            <input required type="text" name="price" value="{{ $course->price }}"
                                                 class="form-control @error('price')  is-invalid @enderror"
                                                 placeholder="Nhập 0 nếu là khóa học miễn phí" />
                                             {{-- @error('price')

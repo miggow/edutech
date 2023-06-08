@@ -23,7 +23,7 @@
                                         <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                                             <span class="d-none d-sm-block">Upload new photo</span>
                                             <i class="bx bx-upload d-block d-sm-none"></i>
-                                            <input type="file" name="image" id="upload" class="account-file-input"
+                                            <input required type="file" name="image" id="upload" class="account-file-input"
                                                 hidden accept="image/png, image/jpeg" />
                                         </label>
 
@@ -35,25 +35,25 @@
                             <br>
                             <div class="mb-3 col-md-6">
                                 <label for="firstName" class="form-label">Name</label>
-                                <input class="form-control" type="text" id="firstName" name="name"
+                                <input required class="form-control" type="text" id="firstName" name="name"
                                     value="{{ auth()->user()->name }}" autofocus />
                             </div>
 
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">E-mail</label>
-                                <input class="form-control" type="text" id="email" name="email"
+                                <input required class="form-control" type="text" id="email" name="email"
                                     value="{{ auth()->user()->email }}" placeholder="john.doe@example.com" />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="phoneNumber">Phone Number</label>
                                 <div class="input-group input-group-merge">
-                                    <input type="text" id="phoneNumber" name="phone" class="form-control"
+                                    <input required type="text" id="phoneNumber" name="phone" class="form-control"
                                         placeholder="" value="{{ auth()->user()->phone ?? '' }}" />
                                 </div>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="address" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" name="address" value="{{ auth()->user()->address }}"
+                                <input required type="text" class="form-control" id="address" name="address" value="{{ auth()->user()->address }}"
                                     placeholder="Address" />
                             </div>
 

@@ -61,7 +61,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email:</label>
-                                <input type="text" class="form-control" id="email" name="email"
+                                <input required type="text" class="form-control" id="email" name="email" required
                                     placeholder="Nhập tài khoản email" autofocus />
                             </div>
                             <div class="mb-3 form-password-toggle">
@@ -69,14 +69,14 @@
                                     <label class="form-label" for="password">Mật khẩu:</label>
                                 </div>
                                 <div class="input-group input-group-merge">
-                                    <input type="password" id="password" class="form-control" name="password"
+                                    <input required type="password" id="password" class="form-control" name="password"
                                         placeholder="************" aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="remember-me" />
+                                    <input  class="form-check-input" type="checkbox" id="remember-me" />
                                     <label class="form-check-label" for="remember-me"> Nhớ mật khẩu </label>
                                 </div>
                             </div>

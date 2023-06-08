@@ -97,19 +97,19 @@
                             <div class="d-flex flex-column px-4 mb-3">
                                 <h6 class="text-white my-3">Phương thức thanh toán</h6>
                                 <div class="payment text-gray  d-flex flex-column ">
-                                    <div class=""><input type="radio" name="payment_method" id="method-0"
+                                    <div class=""><input required type="radio" name="payment_method" id="method-0"
                                             value="0" required>
                                         <label for="method-0" class="star">VNPAY</label>
                                     </div>
-                                    <div class=""><input type="radio" name="payment_method" id="method-1"
+                                    <div class=""><input required type="radio" name="payment_method" id="method-1"
                                             value="1" required>
                                         <label for="method-1" class="star">MOMO</label>
                                     </div>
-                                    <div class=""><input type="radio" name="payment_method" id="method-2"
+                                    <div class=""><input required type="radio" name="payment_method" id="method-2"
                                             value="2" required>
                                         <label for="method-2" class="star">Ngân hàng</label>
                                     </div>
-                                    <div class=""><input type="radio" name="payment_method" id="method-3"
+                                    <div class=""><input required type="radio" name="payment_method" id="method-3"
                                             value="3" required>
                                         <label for="method-3" class="star">Paypal</label>
                                     </div>
@@ -218,15 +218,15 @@
                                     <div class="mb-3">
                                         <label for="rating">Đánh giá:</label>
                                         <div class="rating-stars">
-                                            <input type="radio" name="rating" id="rating-1" value="1" required>
+                                            <input required type="radio" name="rating" id="rating-1" value="1" required>
                                             <label for="rating-1" class="star"></label>
-                                            <input type="radio" name="rating" id="rating-2" value="2" required>
+                                            <input required type="radio" name="rating" id="rating-2" value="2" required>
                                             <label for="rating-2" class="star"></label>
-                                            <input type="radio" name="rating" id="rating-3" value="3" required>
+                                            <input required type="radio" name="rating" id="rating-3" value="3" required>
                                             <label for="rating-3" class="star"></label>
-                                            <input type="radio" name="rating" id="rating-4" value="4" required>
+                                            <input required type="radio" name="rating" id="rating-4" value="4" required>
                                             <label for="rating-4" class="star"></label>
-                                            <input type="radio" name="rating" id="rating-5" value="5" required>
+                                            <input required type="radio" name="rating" id="rating-5" value="5" required>
                                             <label for="rating-5" class="star"></label>
                                         </div>
                                     </div>

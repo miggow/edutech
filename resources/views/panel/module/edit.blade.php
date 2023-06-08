@@ -11,7 +11,7 @@
                         <div class="col mb-3">
                             <label for="name" class="form-label">Tên module:</label>
 
-                            <input type="text" id="name" class="form-control" value="{{ $module->name }}" name='name'
+                            <input required type="text" id="name" class="form-control" value="{{ $module->name }}" name='name'
                                 placeholder="Tên module" />
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                                         <i class='bx bx-sm bxs-time'></i>
                                     </span>
                                 </div>
-                                <input type="text" name="duration" value="{{ $module->duration }}"
+                                <input required type="text" name="duration" value="{{ $module->duration }}"
                                     class="form-control @error('duration')  is-invalid @enderror" />
                             </div>
                         </div>

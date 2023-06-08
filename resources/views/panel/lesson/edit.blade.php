@@ -11,7 +11,7 @@
                             <div class="col mb-3">
                                 <label for="name" class="form-label">Tên bài giảng:</label>
 
-                                <input type="text" id="name" class="form-control" name='name'
+                                <input required type="text" id="name" class="form-control" name='name'
                                     value="{{ $lesson->name }}" placeholder="Nhập tên bài giảng" />
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                                     </div>
                                 @endif
                                 <label class="input-label">video:</label>
-                                <input name="video" type="file" class="form-control">
+                                <input required name="video" type="file" class="form-control">
                             </div>
                         </div>
                         <div class="row">
@@ -35,7 +35,7 @@
                                 {!! $lesson->description !!}</textarea>
                             </div>
                         </div>
-                        <input type="hidden" name="module_id" value="{{ $lesson->module_id }}">
+                        <input required type="hidden" name="module_id" value="{{ $lesson->module_id }}">
                         <button type="submit" class="btn btn-primary">Lưu và tiếp tục</button>
                     </form>
                 </div>

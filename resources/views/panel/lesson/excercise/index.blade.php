@@ -84,14 +84,14 @@
                         <div class="col mb-3">
                             <label for="name" class="form-label">Tên bài giảng:</label>
 
-                            <input type="text" id="name" class="form-control" name='name'
+                            <input required type="text" id="name" class="form-control" name='name'
                                 placeholder="Nhập tên bài giảng" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label class="input-label">video:</label>
-                            <input name="video" type="file"
+                            <input required name="video" type="file"
                                 class="form-control">
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                     </div>
                     
                 </div>
-                <input type="hidden" name="module_id" value="{{ $module->id }}">
+                <input required type="hidden" name="module_id" value="{{ $module->id }}">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                         Close

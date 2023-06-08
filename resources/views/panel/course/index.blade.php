@@ -109,7 +109,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="title" class="form-label">Tên tiêu đề:</label>
-                            <input type="text" id="title" class="form-control" name='title'
+                            <input required type="text" id="title" class="form-control" name='title'
                                 placeholder="Enter Name" />
                         </div>
                     </div>
@@ -136,28 +136,28 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label class="input-label">Ảnh:</label>
-                            <input name="image" type="file"
+                            <input required name="image" type="file"
                                 class="form-control @error('description')  is-invalid @enderror">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label class="input-label">Hình nền:</label>
-                            <input name="background" type="file"
+                            <input required name="background" type="file"
                                 class="form-control @error('description')  is-invalid @enderror">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label class="input-label">video:</label>
-                            <input name="video" type="file"
+                            <input required name="video" type="file"
                                 class="form-control @error('description')  is-invalid @enderror">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
                             <label for="price">Giá:</label>
-                            <input type="number" name="price" class="form-control">
+                            <input required type="number" name="price" class="form-control">
                         </div>
                     </div>
                     <div class="row">
@@ -165,7 +165,6 @@
                             <label for="instructor">Giảng viên:</label>
                             <select name="instructor_id" data-search-option="just_teacher_role"
                                 class="form-control my-2 search-user-select2" data-placeholder="Chọn giảng viên">
-                                <option disabled></option>
                                 @foreach ($instructors as $instructor)
                                     <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
                                 @endforeach
@@ -197,7 +196,7 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label for="name1" class="form-label">Tên danh mục</label>
-                        <input type="text" id="name1" class="form-control" name='name1'
+                        <input required type="text" id="name1" class="form-control" name='name1'
                             placeholder="Enter Name" />
                     </div>
                 </div>
