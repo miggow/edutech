@@ -215,15 +215,22 @@
     <script>
         ClassicEditor
             .create(document.querySelector('textarea[name="description"]'), {
-                toolbar: ['undo', 'redo',
-                    '|', 'heading',
-                    '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                    '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                    '-', // break point
-                    '|', 'alignment',
-                    'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                    '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                ]
+               toolbarGroups: [
+		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+		{ name: 'forms', groups: [ 'forms' ] },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+		{ name: 'insert', groups: [ 'insert' ] },
+		'/',
+		{ name: 'styles', groups: [ 'styles' ] },
+		{ name: 'colors', groups: [ 'colors' ] },
+		{ name: 'tools', groups: [ 'tools' ] },
+		{ name: 'others', groups: [ 'others' ] },
+		{ name: 'about', groups: [ 'about' ] }
+	]
             })
             .then(editor => {
                 console.log(editor);

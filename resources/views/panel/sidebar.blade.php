@@ -56,7 +56,7 @@
         </li>
 
         <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="{{ route('class.index') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-book-open'></i>
                 <div data-i18n="Account Settings">Lớp học</div>
             </a>

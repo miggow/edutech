@@ -64,6 +64,8 @@ Route::group(['middleware' => 'auth'], function () {
                 
             });
             Route::resource('exercise', 'ExerciseController');
+            
+            Route::resource('class', 'ClassController');
         });
         
     });
