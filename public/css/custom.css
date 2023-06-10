@@ -10,3 +10,52 @@
     height: 10px;
     background-color: #ccc;
 }
+.danhsachhocsinh{
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.avths img{
+    width: 50%;
+}
+.itemdshs{
+    margin-right: 20px;
+}
+.itemdshs p{
+    color: #fff;
+}
+.thaoluan textarea{
+width: 100%;
+margin-bottom: 20px;
+}
+.avtnguoidang{
+    width: 5%;
+    margin: 10px;
+}
+
+.nguoidang{
+    display: flex;
+    align-items: center;
+}
+.btndang{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+}
+.contentbinhluan{
+    padding: 0 20px;
+}
+.contentbinhluan textarea{
+   
+    width: 100%;
+}
+.binhluan{
+    display: flex;
+    justify-content: end;
+    margin: 10px;
+}
+.baitapvenha{
+    display: flex;
+    flex-direction: column;
+}
