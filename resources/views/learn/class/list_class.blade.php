@@ -129,16 +129,29 @@
                                     <h5 class="card-title">Người đăng</h5>
                                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                                 </div>
-
                             </div>
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in
                                     to additional content. This content is a little bit longer.</p>
 
                             </div>
+                            <div class="card khungbinhluan">
+                                <div class="nguoidang">
+                                    <div class="avtnguoidang"><img src="{{ asset('assets/img/avatars/default.jpg') }}"
+                                            alt="" class="card-img-top" alt="..."></div>
+                                    <div>
+                                        <h5 class="card-title">Người bình luận</h5>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    Nội dung bình luận mẫu
+                                </div>
+                            </div>
                             <div class="contentbinhluan">
                                 <textarea name="" id="" cols="30" rows="1" placeholder="Bình luận"></textarea>
                             </div>
+
                             <div class="binhluan">
                                 <a href="">Bình luận</a>
                             </div>

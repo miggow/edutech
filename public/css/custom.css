@@ -44,7 +44,7 @@ margin-bottom: 20px;
     margin-bottom: 20px;
 }
 .contentbinhluan{
-    padding: 0 20px;
+    padding: 0 30px;
 }
 .contentbinhluan textarea{
    
@@ -58,4 +58,8 @@ margin-bottom: 20px;
 .baitapvenha{
     display: flex;
     flex-direction: column;
+}
+.khungbinhluan{
+    width: fit-content;
+    margin: 20px 30px;
 }
