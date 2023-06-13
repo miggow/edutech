@@ -60,6 +60,26 @@ margin-bottom: 20px;
     flex-direction: column;
 }
 .khungbinhluan{
-    width: fit-content;
+    width: 100%;
     margin: 20px 30px;
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+}
+
+.editor-toolbar button {
+    margin-right: 5px;
+}
+
+.editor-textarea {
+    height: 200px;
+    resize: vertical;
+    padding: 5px;
 }

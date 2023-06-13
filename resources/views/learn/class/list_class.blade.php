@@ -1,13 +1,5 @@
-<link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 @extends('learn.layout')
 @section('content')
-    @php
-        if (Auth::user()->role == 2) {
-            $isAdmin = 1;
-        } else {
-            $isAdmin = 0;
-        }
-    @endphp
     <div class="row h-100">
         <div class="col-xl-12 p-3">
             <div class="nav-align-top ">
@@ -39,92 +31,35 @@
                     <div class="tab-pane fade show active" id="navs-pills-justified-list-student" role="tabpanel">
                         <!-- Danh sách học sinh -->
                         <div class="danhsachhocsinh">
-                            <div class="itemdshs col-2">
-                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <div class="itemdshs col-1">
+                                <a type="button" class="btn btn-primary bg-dark" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
                                     <div>
-                                        <div class="avths"><img src=" {{ asset('assets/img/avatars/default.jpg') }}"
-                                                alt=""></div>
-                                        <p>Tên: Học sinh 1</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="itemdshs col-2">
-                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <div>
-                                        <div class="avths"><img src=" {{ asset('assets/img/avatars/default.jpg') }}"
-                                                alt=""></div>
-                                        <p>Tên: Học sinh 2</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class=" itemdshs col-2">
-                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <div>
-                                        <div class="avths"><img src=" {{ asset('assets/img/avatars/default.jpg') }}"
-                                                alt=""></div>
-                                        <p>Tên: Học sinh 3</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="itemdshs col-2">
-                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <div>
-                                        <div class="avths"><img src=" {{ asset('assets/img/avatars/default.jpg') }}"
-                                                alt=""></div>
-                                        <p>Tên: Học sinh 4</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="itemdshs col-2">
-                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <div>
-                                        <div class="avths"><img src=" {{ asset('assets/img/avatars/default.jpg') }}"
-                                                alt=""></div>
-                                        <p>Tên: Học sinh 1</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="itemdshs col-2">
-                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <div>
-                                        <div class="avths"><img src=" {{ asset('assets/img/avatars/default.jpg') }}"
-                                                alt=""></div>
-                                        <p>Tên: Học sinh 1</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="itemdshs col-2">
-                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    <div>
-                                        <div class="avths"><img src=" {{ asset('assets/img/avatars/default.jpg') }}"
+                                        <div class="avths my-2"><img src=" {{ asset('assets/img/avatars/default.jpg') }}"
                                                 alt=""></div>
                                         <p>Tên: Học sinh 1</p>
                                     </div>
                                 </a>
                             </div>
                         </div>
-
                     </div>
                     {{-- Thảo luận --}}
-                    <div class="tab-pane fade h-100" id="navs-pills-justified-profile" role="tabpanel">
-                        <div class="thaoluan">
-                            <textarea name="" id="" cols="100" rows="5"
-                                placeholder="Bạn đang nghĩ gì hãy nói tui nghe"></textarea>
-                        </div>
-                        <div class="btndang">
-                            <a class="btn btn-primary" href="">Đăng</a>
+                    <div class="tab-pane fade h-100 px-5 mx-5" id="navs-pills-justified-profile" role="tabpanel">
+                        <div class="px-5">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="thaoluan">
+                                    <textarea class="ckeditor" name="thaoluan" id="thaoluan"></textarea>
+                                </div>
+                                <div class="btndang my-2">
+                                    <a class="btn btn-primary" href="">Đăng</a>
+                                </div>
+                            </form>
                         </div>
                         <div class="itemthaoluan  card mb-3">
-                            <div class="nguoidang">
+                            <div class="nguoidang pt-3 px-3">
                                 <div class="avtnguoidang"><img src="{{ asset('assets/img/avatars/default.jpg') }}"
-                                        alt="" class="card-img-top" alt="..."></div>
+                                        alt="" class="card-img" alt="..."></div>
                                 <div>
                                     <h5 class="card-title">Người đăng</h5>
                                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -135,10 +70,11 @@
                                     to additional content. This content is a little bit longer.</p>
 
                             </div>
-                            <div class="card khungbinhluan">
-                                <div class="nguoidang">
+                            <div class="card-body mx-5 border rounded mb-3">
+
+                                <div class="nguoidang ">
                                     <div class="avtnguoidang"><img src="{{ asset('assets/img/avatars/default.jpg') }}"
-                                            alt="" class="card-img-top" alt="..."></div>
+                                            alt="" class="card-img" alt="..."></div>
                                     <div>
                                         <h5 class="card-title">Người bình luận</h5>
                                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -148,26 +84,16 @@
                                     Nội dung bình luận mẫu
                                 </div>
                             </div>
-                            <div class="contentbinhluan">
-                                <textarea name="" id="" cols="30" rows="1" placeholder="Bình luận"></textarea>
-                            </div>
-
-                            <div class="binhluan">
-                                <a href="">Bình luận</a>
-                            </div>
+                            <div class="mx-5"><form action="#" method="post" enctype="multipart/form-data">
+                                {{-- @csrf --}}
+                                <textarea class="ckeditor" name="binhluan" id="binhluan"></textarea>
+                                <div class="text-end mx-5 mt-3">
+                                    <button class="btn btn-primary ">Đăng</button>
+                                </div>
+                            </form></div>
+                            
                         </div>
-
-
-
                     </div>
-
-
-
-
-
-
-
-
                     {{-- Tài liệu và bài tập --}}
                     <div class="tab-pane fade" id="navs-pills-justified-messages" role="tabpanel">
                         <p class="demo-inline-spacing">
@@ -189,7 +115,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -211,4 +136,25 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.ckeditor').each(function() {
+                ClassicEditor
+                    .create(this)
+                    .then(editor => {
+                        // Cấu hình toolbar cho CKEditor
+                        editor.ui.getEditableElement().parentElement.insertBefore(
+                            editor.ui.view.toolbar.element,
+                            editor.ui.getEditableElement()
+                        );
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
+        });
+    </script>
 @endsection
