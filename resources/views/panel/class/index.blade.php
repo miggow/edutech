@@ -1,32 +1,82 @@
 @extends('panel.app')
 @section('content')
+    @php
+        if (Auth::user()->role == 1 || Auth::user()->role == 2) {
+            $is_ad_ins = true;
+        } else {
+            $is_ad_ins = false;
+        }
+    @endphp
     <div class="card p-4">
         <h3 class="fw-bold py-3">Danh sách lớp học</h3>
-        <div class="text-right mb-4">
-            <button type="button" class="create-class btn btn-outline-primary" data-bs-toggle="modal"
-                data-bs-target="#create-class">
-                <i class='bx bx-sm  bxs-folder-plus'></i> Thêm
-            </button>
-            {{-- <a class="create-category btn btn-outline-primary text-center" data-bs-toggle="modal" data-bs-target="#create-category" ><i class='bx bx-md  bxs-folder-plus'></i> Thêm</a> --}}
+        <div class="d-flex justify-content-between">
+            @if ($is_ad_ins)
+                <div class=" mb-4">
+                    <button type="button" class="create-class btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#create-class">
+                        <i class='bx bx-sm  bxs-folder-plus'></i> Thêm
+                    </button>
+                    {{-- <a class="create-category btn btn-outline-primary text-center" data-bs-toggle="modal" data-bs-target="#create-category" ><i class='bx bx-md  bxs-folder-plus'></i> Thêm</a> --}}
+                </div>
+            @endif
+            <div class=" mb-4">
+                <button type="button" class="joinclass btn btn-outline-primary" data-bs-toggle="modal"
+                    data-bs-target="#joinclass">
+                    <i class='bx bx-right-arrow-alt'></i> Tham gia lớp học
+                </button>
+                {{-- <a class="create-category btn btn-outline-primary text-center" data-bs-toggle="modal" data-bs-target="#create-category" ><i class='bx bx-md  bxs-folder-plus'></i> Thêm</a> --}}
+            </div>
+
+
+
         </div>
+
         {{-- @if ($authUser->can('admin_webinars_export_excel')) --}}
         {{-- @endif --}}
-        <div class="container">
-            <div class="row">
-                @foreach ($classes as $class)
-                <div class="col-md-4  mb-4">
-                    <div class="card" style="min-height: 100%;">
-                        <div class="card-body d-flex flex-column mb-3">
-                            <h4 class="card-title">{{ $class->name }}</h4>
-                            <p class="card-text">{{ $class->description }}</p>
-                            <p class="card-text ">Giáo viên: {{ $class->user->name }}</p>
-                            <div class="mt-auto p-2"><a href="{{ route('class.show', $class->id) }}" class="btn btn-primary w-100">Chi tiết</a></div>
+        @if (count($classes) > 0)
+            <h5>Lớp học của tôi:</h5>
+            <div class="container">
+                <div class="row">
+                    @foreach ($classes as $class)
+                        <div class="col-md-4  mb-4">
+                            <div class="card" style="min-height: 100%;">
+                                <div class="card-body d-flex flex-column mb-3">
+                                    <h4 class="card-title">{{ $class->name }}</h4>
+                                    <p class="card-text">{{ $class->description }}</p>
+                                    <p class="card-text ">Giáo viên: {{ $class->user->name }}</p>
+                                    <div class="mt-auto p-2"><a href="{{ route('class.show', $class->id) }}"
+                                            class="btn btn-primary w-100">Chi tiết</a></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-        </div>
+        @endif
+
+        <h5>Lớp học đã tham gia:</h5>
+        @if ($classes_join)
+            <div class="container">
+                <div class="row">
+                    @foreach ($classes_join as $class)
+                        <div class="col-md-4 mb-4">
+                            <div class="card" style="min-height: 100%;">
+                                <div class="card-body d-flex flex-column mb-3">
+                                    <h4 class="card-title">{{ $class->name }}</h4>
+                                    <p class="card-text">{{ $class->description }}</p>
+                                    <p class="card-text">Giáo viên: {{ $class->user->name }}</p>
+                                    <div class="mt-auto p-2">
+                                        <a href="{{ route('class.show', $class->id) }}" class="btn btn-primary w-100">Chi
+                                            tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
     </div>
 @endsection
 <div class="modal fade" id="create-class" tabindex="-1" aria-hidden="true">
@@ -49,7 +99,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label for="code" class="form-label">Mã lớp học:</label>
-                            <input  type="text" id="code" class="form-control" name='code'
+                            <input type="text" id="code" class="form-control" name='code'
                                 placeholder="Nhập mã lớp học (bỏ trống sẽ tự tạo)" />
                         </div>
                     </div>
@@ -60,6 +110,38 @@
                                 placeholder="Nhập mô tả cho lớp học của bạn"></textarea>
                         </div>
                     </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">Tạo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="joinclass" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Tạo lớp học mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('join_class') }}" method="post">
+                @csrf
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="code" class="form-label">Mã lớp học:</label>
+                            <input type="text" id="code" class="form-control" name='code'
+                                placeholder="Nhập mã lớp học (bỏ trống sẽ tự tạo)" required />
+                        </div>
+                    </div>
+
 
 
                 </div>

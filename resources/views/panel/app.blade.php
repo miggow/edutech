@@ -67,7 +67,7 @@
                     <!-- Content -->
                     @if (session('success'))
                         <div class="bs-toast toast toast-placement-ex m-2 fade bg-{{ session('success')['status'] ? 'success' : 'danger' }} top-0 end-0 show"
-                            role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                            role="alert" aria-live="assertive" aria-atomic="true" data-delay="500">
                             <div class="toast-header">
                                 <i class="bx bx-bell me-2"></i>
                                 <button type="button" class="btn-close" data-bs-dismiss="toast"

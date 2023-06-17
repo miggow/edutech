@@ -1,7 +1,7 @@
 @extends('learn.layout')
 @section('content')
     <div class="row">
-        <div class="col-xl-9">
+        <div class="col-xl-9 p-2">
             <div class="progress mb-3">
                 <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                     aria-valuemax="100">
@@ -18,7 +18,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3">
+        <div class="col-xl-3 p-2">
+            {{-- Bài giảng --}}
+            <h5 class="mt-3">Bài giảng</h5>
             <div class="accordion " id="accordionExample">
                 @php
                     $modules = $course->modules;
@@ -36,12 +38,21 @@
                             aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             @php
                                 $lessons = $module->lessons;
+                                $quizzes = $module->quizzes;
                             @endphp
                             @foreach ($lessons as $lesson)
-                                <div class="accordion-body">
-                                    <a href="#" onclick="changeVideoSource('{{ asset($lesson->video) }}')">
+                                <div class="accordion-body lesson_id" data-lesson-id="{{ $lesson->id }}">
+                                    <a href="#"
+                                        onclick="changeVideoSource('{{ asset($lesson->video) }}'); saveLessonId({{ $lesson->id }})">
                                         {{ $lesson->name }}</a>
                                     {!! $lesson->description !!}
+                                </div>
+                            @endforeach
+                            @foreach ($quizzes as $quiz)
+                                <div class="accordion-body">
+                                    <a href="{{ route('learn.quiz', ['module_id' => $module, 'id' => $quiz->id]) }}"
+                                        target="blank">
+                                        {{ $quiz->name }}</a>
                                 </div>
                             @endforeach
 
@@ -49,61 +60,54 @@
                     </div>
                 @endforeach
             </div>
+
         </div>
 
     </div>
 @endsection
 @section('js')
     <script>
-        function changeVideoSource(videoSrc) {
-            const video = document.getElementById('lesson-video');
-            const source = video.querySelector('source');
-            source.src = videoSrc;
-            video.load();
-        }
-    </script>
-    <script>
         var video = document.getElementById('lesson-video');
-        var supposedCurrentTime = 0; //lưu thời điểm hiện tại của video mà người dùng đang xem.
-
-        var video = document.getElementById('lesson-video');
-        var supposedCurrentTime = 0;
         var progressBar = document.getElementById('progress-bar');
-        video.addEventListener('timeupdate',
-            function() { // Sự kiện này được kích hoạt mỗi khi thời gian hiện tại của video thay đổi.
-
-                //nếu video không đang trong quá trình tua (!video.seeking), tức là người dùng không đang thực hiện hành động tua video. 
-                //Khi không có hành động tua, chúng ta cập nhật giá trị của supposedCurrentTime thành thời gian hiện tại của video (video.currentTime).
-                if (!video.seeking) {
-                    supposedCurrentTime = video.currentTime;
-                }
-            });
-        // Ngăn người dùng tua video
-        video.addEventListener('seeking',
-            function() { //Sự kiện này được kích hoạt khi người dùng thực hiện hành động tua video.
-                var delta = video.currentTime - supposedCurrentTime;
-                if (Math.abs(delta) >
-                    0.01
-                ) { //Nếu sự khác biệt lớn hơn 0.01 (giá trị tùy chỉnh), tức là người dùng đã thực hiện hành động tua video, 
-                    //chúng ta ghi thông báo "Seeking is disabled" vào console và đặt thời gian của video về giá trị supposedCurrentTime để ngăn chặn việc tua video.
-                    console.log("Seeking is disabled");
-                    video.currentTime = supposedCurrentTime;
-                }
-            });
-        // Xóa bỏ đoạn mã sau nếu không cần tua lại
-        video.addEventListener('ended', function() { //Sự kiện này được kích hoạt khi video đã phát hết và kết thúc.
-            // thiết lập lại giá trị supposedCurrentTime về 0. cho phép tua lại video từ đầu nếu muốn.
-            supposedCurrentTime = 0;
-        });
+        var lessonCompleted = false; // Biến để kiểm tra xem bài học đã hoàn thành hay chưa
 
         video.addEventListener('timeupdate', function() {
             if (!video.seeking) {
-                supposedCurrentTime = video.currentTime;
-                var percent = (supposedCurrentTime / video.duration) * 100;
+                var percent = (video.currentTime / video.duration) * 100;
                 progressBar.style.width = percent + '%';
                 progressBar.innerHTML = Math.round(percent) + '%';
                 progressBar.setAttribute('aria-valuenow', Math.round(percent));
+
+                if (percent >= 90 && percent <= 100 && !lessonCompleted) {
+                    lessonCompleted = true;
+                    // Gọi hàm khi bài học đã được coi đến 90-100%
+                    lessonFinished();
+                }
             }
         });
+        var lessonId; 
+        function saveLessonId(id) {
+            lessonId = id;
+        }
+
+        function lessonFinished() {
+
+            var status = 1;
+            $.ajax({
+                url: '/save-lesson-status', // Thay thế đường dẫn bằng route xử lý lưu trạng thái học
+                method: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    lesson_id: lessonId,
+                    status: status
+                },
+            });
+        }
+
+        function changeVideoSource(videoSrc) {
+            video.src = videoSrc;
+            video.load();
+            lessonCompleted = false; // Đặt lại giá trị khi thay đổi video
+        }
     </script>
 @endsection

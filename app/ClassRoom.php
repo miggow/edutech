@@ -12,4 +12,17 @@ class ClassRoom extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+    public function posts()
+    {
+        return $this->hasMany(ThaoLuan::class);
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+    public function documents()
+    {
+        return $this->hasMany(Document::class, 'classroom_id');
+    }
+    
 }

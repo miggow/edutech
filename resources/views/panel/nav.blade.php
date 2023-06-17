@@ -38,8 +38,16 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">John Doe</span>
-                                    <small class="text-muted">Admin</small>
+                                    <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
+                                    <small class="text-muted">
+                                    @if ( auth()->user()->role==0)
+                                        Học sinh
+                                    @elseif (auth()->user()->role==1)
+                                        Giảng viên
+                                    @elseif (auth()->user()->role==2)
+                                        Admin
+                                    @endif
+                                </small>
                                 </div>
                             </div>
                         </a>

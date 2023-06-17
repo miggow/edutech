@@ -8,12 +8,10 @@
             <div class="col-12 col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        {{-- @if ($authUser->can('admin_webinars_export_excel')) --}}
                         <button type="button" class="create-lesson btn btn-outline-primary" data-bs-toggle="modal"
                             data-bs-target="#create-lesson">
                             <i class='bx bx-sm  bxs-folder-plus'></i> Thêm
                         </button>
-                        {{-- @endif --}}
                     </div>
 
                     <div class="card-body">

@@ -43,9 +43,7 @@
                                                     data-bs-toggle="dropdown"><i
                                                         class="bx bx-dots-vertical-rounded"></i></button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item " 
-                                                        href="{{ route('exercise.index', ['lesson' => $lesson->id]) }}"><i
-                                                            class="bx bx-learn-alt me-1"></i>Bài tập</a>
+                                                    
                                                     <a class="dropdown-item " 
                                                         href="{{ route('lesson.edit', $lesson->id) }}"><i
                                                             class="bx bx-edit-alt me-1"></i>Sửa</a>
@@ -98,7 +96,7 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label class="input-label">Mô tả:</label>
-                            <textarea name="description" class="form-control @error('description')  is-invalid @enderror"></textarea>
+                            <textarea required name="description" class="form-control @error('description')  is-invalid @enderror"></textarea>
                         </div>
                     </div>
                     

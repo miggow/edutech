@@ -63,22 +63,37 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('/delete/{id}', 'LessonController@delete')->name('lesson.delete');
                 
             });
-            Route::resource('exercise', 'ExerciseController');
+            Route::resource('quiz', 'QuizController');
             
-            Route::resource('class', 'ClassController');
+            
         });
         
     });
+    Route::resource('class', 'ClassController');
+    Route::post('/documents/{classRoomId}', 'ClassController@upload')->name('documents.upload');
+
+    Route::post('/class/join-class', 'ClassController@joinClass')->name('join_class');
     //học
     Route::prefix('learn')->group(function(){
         Route::get('/course/{id}', 'LearnController@index')->name('learn.index');
+        Route::get('/get-quiz', 'LearnController@getQuiz')->name('learn.quiz');
+        Route::post('/do-quiz/{id}', 'LearnController@doQuiz')->name('learn.doQuiz');
     });
+    Route::post('/save-lesson-status', 'LessonsCompletedController@saveLessonStatus');
+
     Route::post('/post-rating-message/{id}', 'FEController@postRating')->name('post_rating');
     //Các khóa học đã mua, thanh toán
     Route::prefix('order')->group(function(){
         Route::get('/', 'OrderController@index')->name('order.index');
         Route::post('store/{id}', 'OrderController@store')->name('order.store');
     });
+    Route::prefix('thao-luan')->group(function(){
+        Route::get('/', 'ThaoLuanController@getThaoLuan')->name('thaoluan.get');
+        Route::post('/store-post', 'ThaoLuanController@store')->name('post_store');
+        Route::get('/delele-post/{id}', 'ThaoLuanController@delete')->name('delele_post');
+    });
+    Route::post('/store-comment', 'CommentPostController@store')->name('comment_store');
+    Route::get('/delele-comment/{id}', 'CommentPostController@delete')->name('delele_comment');
 });
 
 

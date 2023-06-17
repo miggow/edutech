@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    public function exercise()
+    protected $fillable = ['question','quiz_id'];
+    public function quiz()
     {
-        return $this->belongsTo(Exercise::class);
+        return $this->belongsTo(Quiz::class);
     }
-
     public function answers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class, 'question_id');
     }
 }

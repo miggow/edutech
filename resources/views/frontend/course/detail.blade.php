@@ -165,7 +165,8 @@
                     @foreach ($categories as $category)
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                                <a href="{{ route('FE.course', ['category_id' => $category->id]) }}" class="text-decoration-none h6 m-0">{{ $category->name }}</a>
+                                <a href="{{ route('FE.course', ['category_id' => $category->id]) }}"
+                                    class="text-decoration-none h6 m-0">{{ $category->name }}</a>
                                 @php
                                     $courseCount = App\Course::where('category_id', $category->id)->count();
                                 @endphp
@@ -218,15 +219,20 @@
                                     <div class="mb-3">
                                         <label for="rating">Đánh giá:</label>
                                         <div class="rating-stars">
-                                            <input required type="radio" name="rating" id="rating-1" value="1" required>
+                                            <input required type="radio" name="rating" id="rating-1" value="1"
+                                                required>
                                             <label for="rating-1" class="star"></label>
-                                            <input required type="radio" name="rating" id="rating-2" value="2" required>
+                                            <input required type="radio" name="rating" id="rating-2" value="2"
+                                                required>
                                             <label for="rating-2" class="star"></label>
-                                            <input required type="radio" name="rating" id="rating-3" value="3" required>
+                                            <input required type="radio" name="rating" id="rating-3" value="3"
+                                                required>
                                             <label for="rating-3" class="star"></label>
-                                            <input required type="radio" name="rating" id="rating-4" value="4" required>
+                                            <input required type="radio" name="rating" id="rating-4" value="4"
+                                                required>
                                             <label for="rating-4" class="star"></label>
-                                            <input required type="radio" name="rating" id="rating-5" value="5" required>
+                                            <input required type="radio" name="rating" id="rating-5" value="5"
+                                                required>
                                             <label for="rating-5" class="star"></label>
                                         </div>
                                     </div>
@@ -243,10 +249,13 @@
                         </div>
                     </div>
                 @else
-                    <div class=" mb-4">
-                        <a class="btn btn-primary" href="{{ route('login') }}">Vui lòng đăng nhập để bình luận và đánh
-                            giá</a>
-                    </div>
+                    @if (!Auth::check())
+                        <div class=" mb-4">
+                            <a class="btn btn-primary" href="{{ route('login') }}">Vui lòng đăng nhập để bình luận và
+                                đánh
+                                giá</a>
+                        </div>
+                    @endif
                 @endif
 
 

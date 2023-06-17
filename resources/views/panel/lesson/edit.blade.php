@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label class="input-label">Mô tả:</label>
-                                <textarea name="description" class="form-control @error('description')  is-invalid @enderror">
+                                <textarea name="description" class="form-control " required>
                                 {!! $lesson->description !!}</textarea>
                             </div>
                         </div>

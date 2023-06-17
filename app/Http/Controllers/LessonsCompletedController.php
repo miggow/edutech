@@ -3,21 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Exercise;
-use App\Lesson;
+use App\LessonsCompleted;
+use Auth;
 
-
-class ExerciseController extends Controller
+class LessonsCompletedController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $exercise = Exercise::all();
-        return view('panel.lesson.excercise.index');
+        //
     }
 
     /**
@@ -36,9 +34,17 @@ class ExerciseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function saveLessonStatus(Request $request)
     {
-        //
+        LessonsCompleted::firstOrCreate([
+            'user_id' => Auth::user()->id,
+            'lesson_id' => $request->lesson_id,
+        ], 
+        [
+            'status' => $request->status
+        ]);
+
+        return response()->json(['message' => 'Trạng thái học đã được lưu.'], 200);
     }
 
     /**
@@ -70,10 +76,7 @@ class ExerciseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
 
     /**
      * Remove the specified resource from storage.
