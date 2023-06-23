@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Result;
 use Illuminate\Http\Request;
 use App\Module;
 use App\Course;
 use App\Lesson;
-use App\Auth;
+use Auth;
 use App\Category;
 use App\Quiz;
 use App\Answer;
+use Session;
 class LearnController extends Controller
 {
     public function index($id)
@@ -33,5 +34,21 @@ class LearnController extends Controller
                 $points++;
             }
         }
+        $results=new Result();
+        $results->user_id= Auth::user()->id;
+        $results->quiz_id= $id;
+        $results->points=$points;
+        $results->results=$request->answers;
+        // $results->save();
+        return redirect()->route('learn.results')->with(['id'=>$id,'results'=>$results]);
     }
+    
+    public function results(Request $request)
+    {
+        // dd(Session::get('results')->quiz_id);
+        $quiz = Quiz::where('id',Session::get('results')->quiz_id)->first();
+        $results=Session::get('results');
+        return view('learn.quiz.results', compact('quiz','results'));
+    }
+
 }

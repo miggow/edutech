@@ -78,6 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/course/{id}', 'LearnController@index')->name('learn.index');
         Route::get('/get-quiz', 'LearnController@getQuiz')->name('learn.quiz');
         Route::post('/do-quiz/{id}', 'LearnController@doQuiz')->name('learn.doQuiz');
+        Route::get('/results-quiz','LearnController@results')->name('learn.results');
     });
     Route::post('/save-lesson-status', 'LessonsCompletedController@saveLessonStatus');
 

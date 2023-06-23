@@ -1,5 +1,7 @@
 @extends('learn.layout')
 @section('content')
+<!-- Content wrapper -->
+<div class="content-wrapper">
     <div class="row">
         <div class="col-xl-9 p-2">
             <div class="progress mb-3">
@@ -64,6 +66,7 @@
         </div>
 
     </div>
+</div>
 @endsection
 @section('js')
     <script>

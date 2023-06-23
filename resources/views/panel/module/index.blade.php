@@ -46,13 +46,16 @@
                                                     <a class="dropdown-item "
                                                         href="{{ route('module.edit', $module->id) }}"><i
                                                             class="bx bx-edit-alt me-1"></i>Edit</a>
+                                                            <a class="dropdown-item "
+                                                                href="{{ route('lesson.index', $module->id) }}"><i
+                                                                    class="bx bx-book-open me-1"></i>Bài giảng</a>
                                                     <a class="dropdown-item create-quiz" data-bs-toggle="modal"
                                                         data-bs-target="#create-quiz"
                                                         href="{{ route('quiz.store', ['module_id' => $module->id]) }}"><i
                                                             class="bx bx-book me-1"></i>Thêm bài tập</a>
-                                                    <a class="dropdown-item "
-                                                        href="{{ route('lesson.index', $module->id) }}"><i
-                                                            class="bx bx-book-open me-1"></i>Bài giảng</a>
+                                                            <a class="dropdown-item create-quiz"
+                                                            href="{{ route('quiz.index') }}"><i
+                                                                class="bx bx-book me-1"></i>Quản lý bài tập</a>
                                                     <a class="dropdown-item"
                                                         href="{{ route('module.delete', $module->id) }}"><i
                                                             class="bx bx-trash me-1"></i>
@@ -122,7 +125,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Tạo khóa học</h5>
+                <h5 class="modal-title" id="exampleModalLabel1">Tạo bài tập</h5>
                 <button class="btn btn-primary" type="button" onclick="addField()">+</button>
             </div>
             <form action="{{ route('quiz.store') }}" method="post">
