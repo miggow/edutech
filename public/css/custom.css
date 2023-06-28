@@ -225,8 +225,8 @@ input[type="radio"]:active+.design::after {
     border: none;
     border-radius: 100vh;
     padding: 0.8rem 1.5rem;
-    background: #117eeb;
-    color: #fff;
+    background: #3E4658;
+    color: #FFF;
     font-family: inherit;
     text-transform: uppercase;
     font-size: 1rem;
@@ -273,7 +273,8 @@ input[type="radio"]:active+.design::after {
     margin-bottom: 20px;
 }
 .bgquiz{
-    background-color: #a5d7e1;
+    background-color: #b4bbc5;
+    height: 100%;
 }
 
 .containerquiz {
@@ -282,9 +283,12 @@ input[type="radio"]:active+.design::after {
     padding: 20px;
     margin: 0 10%;
     margin-bottom: 30px;
-    background-color: #3D3D3D;
-    font-size: 20px;
-    color: #FFD154;
+    /* background-color: #BCCBD8; */
+    background-color: #5e616f;
+    font-size: 30px;
+    color: #fff;
+    /* text-transform: uppercase; */
+    font-family: 'Courier new';
     min-height: 250px;
 }
 
@@ -299,28 +303,28 @@ input[type="radio"]:active+.design::after {
 }
 
 .btn-outline-custom {
-    color: #FFD154;
+    color: #3E4658;
     border-color: #3d3d3d;
-    background-color: #3d3d3d;
+    background-color: #F2F2F2;
   }
   .btn-outline-custom:hover {
-    color: #FFC0B9;
-    background-color: #FFFFC5;
-    border-color: #FFFFC5;
-    box-shadow: 0 0.125rem 0.25rem 0 rgba(113, 221, 55, 0.4);
+    color: #434952;
+    background-color: #d9ccc1;
+    border-color: #3f352c;
+    box-shadow: 0 0.125rem 0.25rem 0 rgba(32, 32, 32, 0.4);
     transform: translateY(-1px);
   }
   .btn-check:focus + .btn-outline-custom, .btn-outline-custom:focus {
-    color: #fff;
-    background-color: #66c732;
-    border-color: #66c732;
+    color: #434952;
+    background-color: #d9ccc1;
+    border-color: #3f352c;
     box-shadow: none;
     transform: translateY(0);
   }
   .btn-check:checked + .btn-outline-custom, .btn-check:active + .btn-outline-custom, .btn-outline-custom:active, .btn-outline-custom.active, .btn-outline-custom.dropdown-toggle.show {
-    color: #FFD154;
-    background-color: #FFFFC5;
-    border-color: #60bc2f;
+    color: #434952;
+    background-color: #d9ccc1;
+    border-color: #3f352c;
   }
   .btn-check:checked + .btn-outline-custom:focus, .btn-check:active + .btn-outline-custom:focus, .btn-outline-custom:active:focus, .btn-outline-custom.active:focus, .btn-outline-custom.dropdown-toggle.show:focus {
     box-shadow: none;
