@@ -348,3 +348,46 @@ input[type="radio"]:active+.design::after {
     border-color: #fff;
     color: #71dd37;
   }
+
+/* home */
+/* Khóa học nổi bật */
+.imgkhoahocnb img{
+width: 100%;
+}
+.tieudekhoahoc h6{
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.02rem;
+    font-size: 2rem;
+    max-width: 36em
+}
+.tenkhnb{
+    color: #000;
+    font-weight: 400;
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 15px;
+}
+.nguoidang{
+    color: #5e616f;
+    font-size: 12px;
+}
+.danhgia {
+    color: orange;
+  }
+  .giakhoahoc{
+    color: rgb(234, 50, 50);
+  }
+  .itemtheloai{
+    padding: 30px 10px;
+    background-color: #696cff;
+    text-align: center;
+    border-radius: 5px;
+  }
+  .itemtheloai a{
+    color: #fff;
+  }
+  .boxtheloai{
+    margin: 0 20px;
+    justify-content: space-between;
+  }

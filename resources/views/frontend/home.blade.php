@@ -1,12 +1,58 @@
 @extends('frontend.app')
 @section('content')
-    <div class="bg-navbar-theme ">
 
-        <img src="{{ asset('assets/assets/img/backgrounds/papers.co-bf55-school-anime-illust-orange-minimal-simple-art-26-wallpaper.jpg') }}"
-            height="35%" width="100%" style="object-fit: cover" alt="...">
-        <hr>
+    <div class="bg-navbar-theme h-100 ">
+        {{-- Khóa học nổi bật --}}
+        <section class="m-4 p-3">
+            <div class="tieudekhoahoc">
+                <h6>Các khóa học nổi bật</h6>
+            </div>
+            <div class="boxkhoahocnb row">
+                <div class="itemkhoahocnb col-2">
+                    <a href="">
+                        <div class="imgkhoahocnb"><img class="" src="{{ asset('../assets/img/backgrounds/18.jpg') }}"
+                                alt="Card image cap"></div>
+                        <div class="tenkhnb">Khóa học nổi bật 1 Khóa học nổi bật 1 Khóa học nổi bật 1 Khóa học nổi bật 1Khóa
+                            học nổi bật 1</div>
+                        <div class="nguoidang">Giảng viên 1</div>
+                        <div class="danhgia">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                        </div>
+                        <div class="giakhoahoc">300.000d
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        {{-- Thể Loại --}}
+        <section class="m-4 p-3">
+            <div class="tieudekhoahoc">
+                <h6>Các thể loại hàng đầu</h6>
+            </div>
+            <div class="boxtheloai row">
+                <div class="itemtheloai col-2">
+                    <a href="">Hành động</a>
+                </div>
+                <div class="itemtheloai col-2">
+                    <a href="">Bắn súng</a>
+                </div>
+                <div class="itemtheloai col-2">
+                    <a href="">Chém lộn</a>
+                </div>
+                <div class="itemtheloai col-2">
+                    <a href="">Hôn nhau</a>
+                </div>
+                 <div class="itemtheloai col-2">
+                    <a href="">Hôn nhau</a>
+                </div>
+            </div>
+        </section>
         {{-- course list --}}
-        <section class="p-5">
+        {{-- <section class="p-5">
             <div class="row mx-0 justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title text-center position-relative mb-5">
@@ -43,6 +89,6 @@
                 @endforeach
 
             </div>
-        </section>
+        </section> --}}
     </div>
 @endsection
