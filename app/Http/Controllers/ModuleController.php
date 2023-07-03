@@ -41,7 +41,8 @@ class ModuleController extends Controller
         $module = new Module();
         $module->fill($request->only(['duration', 'course_id', 'name']));
         $module->save();
-        return redirect()->back();
+        \session()->flash('success', 'Tạo module cho bài học thành công.');
+        return redirect()->back(); 
     }
 
     /**
@@ -82,6 +83,8 @@ class ModuleController extends Controller
             'duration' => $request->duration,
         ]);
         $module->save();
+        \session()->flash('success', 'Sửa module cho bài học thành công.');
+
         return redirect()->route('module.index', $module->course_id);
 
     }
@@ -96,6 +99,7 @@ class ModuleController extends Controller
     {
         $module= Module::find($id);
         $module->delete();
+        \session()->flash('error', 'Xóa module cho bài học thành công.');
         return redirect()->back();
     }
 }

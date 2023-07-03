@@ -93,11 +93,11 @@
                                 class="form-control">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label class="input-label">Mô tả:</label>
-                            <textarea required name="description" class="form-control @error('description')  is-invalid @enderror"></textarea>
-                        </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Mô tả</label>
+                        {{-- <textarea class="form-control" id="description" name="description" required></textarea> --}}
+                        <textarea class="ckeditor" name="description" id="description" ></textarea>
+
                     </div>
                     
                 </div>
@@ -115,23 +115,21 @@
 @section('js')
     <script src="/ckeditor/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('textarea[name="description"]'), {
-                toolbar: ['undo', 'redo',
-                    '|', 'heading',
-                    '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                    '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                    '-', // break point
-                    '|', 'alignment',
-                    'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                    '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
-                ]
-            })
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
+        $(document).ready(function() {
+            $('.ckeditor').each(function() {
+                ClassicEditor
+                    .create(this)
+                    .then(editor => {
+                        // Cấu hình toolbar cho CKEditor
+                        editor.ui.getEditableElement().parentElement.insertBefore(
+                            editor.ui.view.toolbar.element,
+                            editor.ui.getEditableElement()
+                        );
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
             });
+        });
     </script>
 @endsection

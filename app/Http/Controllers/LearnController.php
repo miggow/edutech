@@ -21,6 +21,11 @@ class LearnController extends Controller
     public function getQuiz(Request $request)
     {   
         $quiz = Quiz::where('module_id', $request->module_id)->where('id', $request->id)->first();
+        $result = Result::where('user_id', Auth::id())->where('quiz_id', $quiz->id)->first();
+        if($result)
+        {
+            return redirect()->route('learn.results', $quiz->id);
+        }
         return view('learn.quiz.index', compact('quiz'));
     }
     public function doQuiz(Request $request, $id)
@@ -39,15 +44,15 @@ class LearnController extends Controller
         $results->quiz_id= $id;
         $results->points=$points;
         $results->results=$request->answers;
-        // $results->save();
-        return redirect()->route('learn.results')->with(['id'=>$id,'results'=>$results]);
+        $results->save();
+        return redirect()->route('learn.results', $id);
     }
     
-    public function results(Request $request)
+    public function results(Request $request, $id)
     {
         // dd(Session::get('results')->quiz_id);
-        $quiz = Quiz::where('id',Session::get('results')->quiz_id)->first();
-        $results=Session::get('results');
+        $quiz = Quiz::where('id',$id)->first();
+        $results= Result::where('quiz_id', $id)->where('user_id',Auth::id())->first();
         return view('learn.quiz.results', compact('quiz','results'));
     }
 

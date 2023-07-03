@@ -13,18 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-   
+//Auth
 Route::get('login', 'AuthController@login')->name('login');
 Route::get('register', 'AuthController@register')->name('register');
 Route::post('login', 'AuthController@DoLogin')->name('do.login');
 Route::post('register', 'AuthController@DoRegister')->name('do.register');
 Route::get('logout', 'AuthController@logout')->name('logout');
 
+//homepage
 Route::get('/', 'FEController@index')->name('home');
 Route::get('/courses', 'FEController@courseList')->name('FE.course');
 Route::get('/courses/{id}', 'FEController@courseDetail')->name('FE.course_detail');
 
 Route::group(['middleware' => 'auth'], function () {
+    //Panel page
     Route::prefix('panel')->group(function () {
         Route::get('dashboard','PanelController@index')->name('dashboard');
         Route::group(['middleware' => 'checkUserRole'],function(){
@@ -64,21 +66,25 @@ Route::group(['middleware' => 'auth'], function () {
                 
             });
             Route::resource('quiz', 'QuizController');
-            
-            
+            Route::post('quiz/{id}', 'QuizController@update')->name('quiz.update');
         });
         
     });
+    //payment
+    Route::post('store/{id}', 'OrderController@store')->name('order.store');
+    Route::get('thanks', 'OrderController@thanks')->name('order.thanks');
+
+    //class
     Route::resource('class', 'ClassController');
     Route::post('/documents/{classRoomId}', 'ClassController@upload')->name('documents.upload');
-
     Route::post('/class/join-class', 'ClassController@joinClass')->name('join_class');
-    //học
+
+    //learn course
     Route::prefix('learn')->group(function(){
         Route::get('/course/{id}', 'LearnController@index')->name('learn.index');
         Route::get('/get-quiz', 'LearnController@getQuiz')->name('learn.quiz');
         Route::post('/do-quiz/{id}', 'LearnController@doQuiz')->name('learn.doQuiz');
-        Route::get('/results-quiz','LearnController@results')->name('learn.results');
+        Route::get('/results-quiz/{id}','LearnController@results')->name('learn.results');
     });
     Route::post('/save-lesson-status', 'LessonsCompletedController@saveLessonStatus');
 
@@ -86,7 +92,6 @@ Route::group(['middleware' => 'auth'], function () {
     //Các khóa học đã mua, thanh toán
     Route::prefix('order')->group(function(){
         Route::get('/', 'OrderController@index')->name('order.index');
-        Route::post('store/{id}', 'OrderController@store')->name('order.store');
     });
     Route::prefix('thao-luan')->group(function(){
         Route::get('/', 'ThaoLuanController@getThaoLuan')->name('thaoluan.get');

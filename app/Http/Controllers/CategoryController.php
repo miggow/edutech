@@ -41,6 +41,8 @@ class CategoryController extends Controller
         $category->fill($request->only(['name']));
         $category->user_id = Auth::user()->id;
         $category->save();
+        \session()->flash('success', 'Tạo danh mục thành công.');
+
         return redirect()->back();
     }
 
@@ -92,6 +94,8 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
+        \session()->flash('success', 'Xóa danh mục thành công.');
+
         return redirect()->back();
     }
 }

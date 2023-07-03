@@ -1,72 +1,87 @@
 @extends('learn.layout')
 @section('content')
-<!-- Content wrapper -->
-<div class="content-wrapper">
-    <div class="row">
-        <div class="col-xl-9 p-2">
-            <div class="progress mb-3">
-                <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                    aria-valuemax="100">
-                    0%
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="card mb-4">
-                    <div class=" card-img">
-                        <video width="100%" height="100%" controls id="lesson-video">
-                            <source src="{{ asset($course->video) }}" type="video/mp4">
-                        </video>
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-xl-9 p-2">
+                <div class="progress mb-3">
+                    <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100">
+                        0%
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-xl-3 p-2">
-            {{-- Bài giảng --}}
-            <h5 class="mt-3">Bài giảng</h5>
-            <div class="accordion " id="accordionExample">
-                @php
-                    $modules = $course->modules;
-                @endphp
-                @foreach ($modules as $module)
-                    <div class="card accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#accordionTwo-{{ $module->id }}" aria-expanded="false"
-                                aria-controls="accordionTwo-{{ $module->id }}">
-                                {{ $module->name }}
-                            </button>
-                        </h2>
-                        <div id="accordionTwo-{{ $module->id }}" class="accordion-collapse collapse"
-                            aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                            @php
-                                $lessons = $module->lessons;
-                                $quizzes = $module->quizzes;
-                            @endphp
-                            @foreach ($lessons as $lesson)
-                                <div class="accordion-body lesson_id" data-lesson-id="{{ $lesson->id }}">
-                                    <a href="#"
-                                        onclick="changeVideoSource('{{ asset($lesson->video) }}'); saveLessonId({{ $lesson->id }})">
-                                        {{ $lesson->name }}</a>
-                                    {!! $lesson->description !!}
-                                </div>
-                            @endforeach
-                            @foreach ($quizzes as $quiz)
-                                <div class="accordion-body">
-                                    <a href="{{ route('learn.quiz', ['module_id' => $module, 'id' => $quiz->id]) }}"
-                                        target="blank">
-                                        {{ $quiz->name }}</a>
-                                </div>
-                            @endforeach
-
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class=" card-img">
+                            <video width="100%" height="100%" controls id="lesson-video">
+                                <source src="{{ asset($course->video) }}" type="video/mp4">
+                            </video>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            </div>
+            <div class="col-xl-3 p-2">
+                {{-- Bài giảng --}}
+                <h5 class="mt-3">Bài giảng</h5>
+                <div class="accordion " id="accordionExample">
+                    @php
+                        $modules = $course->modules;
+                    @endphp
+                    @foreach ($modules as $module)
+                        <div class="card accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#accordionTwo-{{ $module->id }}" aria-expanded="false"
+                                    aria-controls="accordionTwo-{{ $module->id }}">
+                                    {{ $module->name }}
+                                </button>
+                            </h2>
+                            <div id="accordionTwo-{{ $module->id }}" class="accordion-collapse collapse"
+                                aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                @php
+                                    $lessons = $module->lessons;
+                                    $quizzes = $module->quizzes;
+                                @endphp
+                                @foreach ($lessons as $index => $lesson)
+                                    <div class="accordion-body lesson_id" data-lesson-id="{{ $lesson->id }}">
+                                        @if ($index == 0 || $lesson->isCompleted())
+                                            <a href="#"
+                                                onclick="changeVideoSource('{{ asset($lesson->video) }}'); saveLessonId({{ $lesson->id }})">
+                                                {{ $lesson->name }}</a>
+                                        @else
+                                            {{ $lesson->name }} (Chưa hoàn thành)
+                                        @endif
+                                        {!! $lesson->description !!}
+                                    </div>
+                                @endforeach
+
+
+
+                                {{-- @foreach ($quizzes as $quiz)
+                                    <div class="accordion-body">
+                                        @php
+                                            $completed = $quiz->completed(auth()->user()->id);
+                                        @endphp
+                                        @if ($completed || ($quiz->previousQuizCompleted(auth()->user()->id) ?? false))
+                                            <a href="{{ route('learn.quiz', ['module_id' => $module, 'id' => $quiz->id]) }}"
+                                                target="blank">
+                                                {{ $quiz->name }}</a>
+                                        @else
+                                            {{ $quiz->name }} (Chưa hoàn thành)
+                                        @endif
+                                    </div>
+                                @endforeach --}}
+
+
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
             </div>
 
         </div>
-
     </div>
-</div>
 @endsection
 @section('js')
     <script>
@@ -88,7 +103,8 @@
                 }
             }
         });
-        var lessonId; 
+        var lessonId;
+
         function saveLessonId(id) {
             lessonId = id;
         }

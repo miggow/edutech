@@ -7,7 +7,8 @@ use App\Category;
 use Auth;
 use App\Course;
 use App\User;
-
+use App\ClassRoom;
+use Illuminate\Support\Str;
 class CourseController extends Controller
 {
     public function index()
@@ -35,6 +36,16 @@ class CourseController extends Controller
         }
         $course->user_id = Auth::user()->id;
         $course->save();
+        
+        $class = new ClassRoom();
+        $class->name = $request->title;
+        $class->code =  Str::random(10);
+        $class->user_id = Auth::user()->id;
+        $class->description = $request->description;
+        $class->course_id = $course->id;
+        $class->save();
+        \session()->flash('success', 'Tạo khóa học thành công.');
+
         return redirect()->back();
     }
     public function edit($id)
@@ -67,5 +78,8 @@ class CourseController extends Controller
     {
         $course = Course::find($id);
         $course->delete();
+        \session()->flash('success', 'Xóa khóa học thành công.');
+
+        return redirect()->back();
     }
 }

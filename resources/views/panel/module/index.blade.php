@@ -49,13 +49,13 @@
                                                             <a class="dropdown-item "
                                                                 href="{{ route('lesson.index', $module->id) }}"><i
                                                                     class="bx bx-book-open me-1"></i>Bài giảng</a>
-                                                    <a class="dropdown-item create-quiz" data-bs-toggle="modal"
+                                                    {{-- <a class="dropdown-item create-quiz" data-bs-toggle="modal"
                                                         data-bs-target="#create-quiz"
                                                         href="{{ route('quiz.store', ['module_id' => $module->id]) }}"><i
-                                                            class="bx bx-book me-1"></i>Thêm bài tập</a>
-                                                            <a class="dropdown-item create-quiz"
-                                                            href="{{ route('quiz.index') }}"><i
-                                                                class="bx bx-book me-1"></i>Quản lý bài tập</a>
+                                                            class="bx bx-book me-1"></i>Thêm bài tập</a> --}}
+                                                    <a class="dropdown-item create-quiz"
+                                                    href="{{ route('quiz.index',['module_id' => $module->id]) }}"><i
+                                                        class="bx bx-book me-1"></i>Quản lý bài tập</a>
                                                     <a class="dropdown-item"
                                                         href="{{ route('module.delete', $module->id) }}"><i
                                                             class="bx bx-trash me-1"></i>
@@ -121,7 +121,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="create-quiz" tabindex="-1" aria-hidden="true">
+{{-- <div class="modal fade" id="create-quiz" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -153,9 +153,9 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 @section('js')
-    <script>
+    {{-- <script>
         function addField() {
             var container = document.querySelector('.field-input-land');
             var row = document.createElement('div');
@@ -181,11 +181,13 @@
                 inputAnswer.className = 'form-control';
                 inputAnswer.name = 'questions[' + container.querySelectorAll('.row.mb-3').length + '][answers][' + i + '][text]';
                 inputAnswer.placeholder = 'Câu trả lời ' + (i + 1);
+                inputAnswer.required = true; // Thêm required vào trường input
                 col.appendChild(inputAnswer);
                 var inputRadio = document.createElement('input');
                 inputRadio.type = 'radio';
                 inputRadio.name = 'questions[' + container.querySelectorAll('.row.mb-3').length + '][correct_answer]';
                 inputRadio.value = i.toString();
+                inputRadio.required = true;
                 col.appendChild(inputRadio);
                 row.appendChild(col);
             }
@@ -209,5 +211,5 @@
         function removeField(row) {
             row.remove();
         }
-    </script>
+    </script> --}}
 @endsection

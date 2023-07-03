@@ -117,7 +117,8 @@
                             </div>
 
                             <div class="py-3 px-4">
-                                <button class="btn btn-primary" type="submit">Mua ngay</button>
+                                {{-- <a href="{{ route('order.store') }}" name="redirect" class="btn btn-primary">Mua ngay</a> --}}
+                                <button class="btn btn-primary" type="submit" name="redirect">Mua ngay</button>
                             </div>
                         </form>
                     @else

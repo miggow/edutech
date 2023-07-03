@@ -14,9 +14,10 @@ class QuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('panel.quiz.index');
+        $quizzes = Quiz::where('module_id', (int)$request->module_id)->get();
+        return view('panel.quiz.index', compact('quizzes'));
     }
 
     /**
@@ -37,14 +38,17 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        // Lưu thông tin bài quiz
-        $quiz = Quiz::create([
-            'name' => $request->input('name'),
-            'module_id' => $request->input('module_id'),
-        ]);
-
+        $validatedData = $request->validate([
+            'module_id' => 'required',
+            'name' => 'required',
+        ]); 
         // Lưu các câu hỏi và đáp án
         if ($request->has('questions')) {
+            // Lưu thông tin bài quiz
+            $quiz = Quiz::create([
+                'name' => $request->input('name'),
+                'module_id' => $request->input('module_id'),
+            ]);
             foreach ($request->input('questions') as $questionData) {
                 // Lưu thông tin câu hỏi
                 $question = Question::create([
@@ -63,9 +67,11 @@ class QuizController extends Controller
                     }
                 }
             }
+            return redirect()->back()->with('success', ['status' => 1, 'message' => 'Tạo bài quiz thành công!']);
         }
-
-        return redirect()->back()->with('success', ['status' => 1, 'message' => 'Tạo bài quiz thành công!']);
+        else{
+            return redirect()->back()->with('success', ['status' => 0, 'message' => 'Vui lòng thêm câu hỏi cho bài kiểm tra!']);
+        }
     }
 
     /**
@@ -87,7 +93,8 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        //
+        $quiz = Quiz::findOrFail($id);
+        return view('panel.quiz.edit', compact('quiz'));
     }
 
     /**
@@ -99,7 +106,17 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $quiz = Quiz::findOrFail($id);
+        $validatedData = $request->validate([
+            'questions' => 'required',
+            'name' => 'required',
+        ]); 
+        if($request->questions){
+            Quiz::updateQuiz($quiz, $request->questions);
+        }
+        else{
+            dd('aaj');
+        }
     }
 
     /**

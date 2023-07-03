@@ -24,7 +24,7 @@
                                                 <div class="col-xl-6">
                                                     <input type="radio" class="btn-check "
                                                         name="answers[{{ $question->id }}]" value="{{ $item->id }}"
-                                                        id="answers[{{ $question->id . $key }}]" autocomplete="off">
+                                                        id="answers[{{ $question->id . $key }}]"  required>
                                                     <label class="btn btn-outline-custom  btn-lg w-100 mb-2"
                                                         for="answers[{{ $question->id . $key }}]">{{ $item->text }}</label>
                                                 </div>

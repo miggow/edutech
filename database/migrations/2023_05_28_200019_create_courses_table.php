@@ -21,7 +21,7 @@ class CreateCoursesTable extends Migration
             $table->string('video')->nullable();
             $table->integer('status')->default(1);
             $table->longText('description');
-            $table->string('price');
+            $table->integer('price');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('instructor_id');

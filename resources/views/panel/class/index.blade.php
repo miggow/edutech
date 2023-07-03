@@ -42,7 +42,7 @@
                             <div class="card" style="min-height: 100%;">
                                 <div class="card-body d-flex flex-column mb-3">
                                     <h4 class="card-title">{{ $class->name }}</h4>
-                                    <p class="card-text">{{ $class->description }}</p>
+                                    <p class="card-text">{!! $class->description !!}</p>
                                     <p class="card-text ">Giáo viên: {{ $class->user->name }}</p>
                                     <div class="mt-auto p-2"><a href="{{ route('class.show', $class->id) }}"
                                             class="btn btn-primary w-100">Chi tiết</a></div>
