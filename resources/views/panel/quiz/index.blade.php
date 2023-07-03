@@ -95,21 +95,33 @@
             for (var i = 0; i < 4; i++) {
                 var col = document.createElement('div');
                 col.className = 'col';
+
+                // Thêm thẻ div với class "form-check"
+                var formCheckDiv = document.createElement('div');
+                formCheckDiv.className = 'form-check';
+
+                var inputRadio = document.createElement('input');
+                inputRadio.type = 'radio';
+                inputRadio.className = 'form-check-input'; // Thay đổi className của input radio
+                inputRadio.name = 'questions[' + container.querySelectorAll('.row.mb-3').length + '][correct_answer]';
+                inputRadio.value = i.toString();
+                inputRadio.required = true;
+                formCheckDiv.appendChild(inputRadio);
+                
                 var inputAnswer = document.createElement('input');
                 inputAnswer.type = 'text';
                 inputAnswer.className = 'form-control';
                 inputAnswer.name = 'questions[' + container.querySelectorAll('.row.mb-3').length + '][answers][' + i + '][text]';
                 inputAnswer.placeholder = 'Câu trả lời ' + (i + 1);
                 inputAnswer.required = true; // Thêm required vào trường input
-                col.appendChild(inputAnswer);
-                var inputRadio = document.createElement('input');
-                inputRadio.type = 'radio';
-                inputRadio.name = 'questions[' + container.querySelectorAll('.row.mb-3').length + '][correct_answer]';
-                inputRadio.value = i.toString();
-                inputRadio.required = true;
-                col.appendChild(inputRadio);
+                formCheckDiv.appendChild(inputAnswer);
+
+                
+
+                col.appendChild(formCheckDiv);
                 row.appendChild(col);
             }
+
 
             // Thêm nút xóa câu hỏi
             var colAuto = document.createElement('div');

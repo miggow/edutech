@@ -1,7 +1,6 @@
 @extends('panel.app')
 @section('content')
-
-<div class="card p-4">
+    <div class="card p-4">
         <h4 class="fw-bold py-3 mb-4">Danh sách người dùng</h4>
         <div class="table-responsive text-nowrap">
             <table class="table " id="user-table">
@@ -18,7 +17,10 @@
                 <tbody class="table-border-bottom-0">
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->name }}</td>
+                            <td><a type="button" class="view" data-bs-toggle="modal"
+                                    data-bs-target="#view" data-name="{{ $user->name }}"
+                                    data-email="{{ $user->email }}" data-phone="{{ $user->phone }}"
+                                    data-address="{{ $user->address }}">{{ $user->name }}</a></td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone ?? '' }}</td>
                             <td>
@@ -112,6 +114,25 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="view" tabindex="-1" aria-labelledby="viewLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewLabel">Thông tin người dùng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Tên:</strong> <span id="modal-name"></span></p>
+                <p><strong>Email:</strong> <span id="modal-email"></span></p>
+                <p><strong>Số điện thoại:</strong> <span id="modal-phone"></span></p>
+                <p><strong>Địa chỉ:</strong> <span id="modal-address"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section('js')
     <script>
         $(document).ready(function() {
@@ -150,6 +171,21 @@
                 // ...
             });
 
+        });
+    </script>
+    <script>
+        // Xử lý sự kiện khi nút mở modal được nhấp
+        $('.view').on('click', function() {
+            var name = $(this).data('name');
+            var email = $(this).data('email');
+            var phone = $(this).data('phone');
+            var address = $(this).data('address');
+
+            // Cập nhật nội dung của modal với thông tin người dùng tương ứng
+            $('#modal-name').text(name);
+            $('#modal-email').text(email);
+            $('#modal-phone').text(phone);
+            $('#modal-address').text(address);
         });
     </script>
 @endsection

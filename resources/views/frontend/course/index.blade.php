@@ -12,38 +12,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-5">
-                    @if (count($courses) != 0)
-                        @foreach ($courses as $course)
-                            <div class="col-5 col-sm-3 mb-3">
-                                <div class="card h-100">
-                                    <a href="{{ route('FE.course_detail', $course->id) }}">
-                                        <img class="card-img-top" src="{{ asset($course->image) }}" alt="Card image cap">
-                                    </a>
-                                    <div class="card-body">
-                                        <a href="{{ route('FE.course_detail', $course->id) }}">
-                                            <h5 class="card-title">{{ $course->title }}</h5>
-                                        </a>
-                                        <div class="max-height-200 overflow-auto" style="height: 200px;">
-                                            <p class="card-text">
-                                                {!! $course->description !!}
-                                            </p>
-                                        </div>
-
-                                        <a href="{{ route('FE.course_detail', $course->id) }}"
-                                            class="btn btn-outline-primary">Chi
-                                            tiết</a>
-                                    </div>
+                <div class="boxkhoahocnb my-3 row">
+                    @foreach ($courses as $course)
+                        <div class="itemkhoahocnb col-2" style="height: 250px;">
+                            <a class="h-100" href="{{ route('FE.course_detail', $course->id) }}">
+                                <div class="imgkhoahocnb"><img class="" src="{{ asset($course->image) }}"
+                                        alt="Card image cap"></div>
+                                <div class="tenkhnb">{{ $course->title }}</div>
+                                <div class="nguoidang">Giảng viên: {{ $course->instructor->name }} </div>
+                                <div class="danhgia">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
                                 </div>
-                            </div>
-                        @endforeach
-                    @else
-                        <div class=" card p-5 text-center">
-                            <h1>Hiện không có khóa học nào</h1>
+                                <div class="giakhoahoc">{{ number_format($course->price, 0, '', ',') }} đ
+                                </div>
+                            </a>
                         </div>
-                    @endif
-
-
+                    @endforeach
                 </div>
             </section>
         </div>

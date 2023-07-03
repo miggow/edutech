@@ -97,22 +97,22 @@
                             <div class="d-flex flex-column px-4 mb-3">
                                 <h6 class="text-white my-3">Phương thức thanh toán</h6>
                                 <div class="payment text-gray  d-flex flex-column ">
-                                    <div class=""><input required type="radio" name="payment_method" id="method-0"
+                                    <div class="form-check"><input class="form-check-input" required type="radio" name="payment_method" id="method-0"
                                             value="0" required>
                                         <label for="method-0" class="star">VNPAY</label>
                                     </div>
-                                    <div class=""><input required type="radio" name="payment_method" id="method-1"
+                                    <div class="form-check"><input required class="form-check-input" type="radio" name="payment_method" id="method-1"
                                             value="1" required>
                                         <label for="method-1" class="star">MOMO</label>
                                     </div>
-                                    <div class=""><input required type="radio" name="payment_method" id="method-2"
+                                    {{-- <div class=""><input required type="radio" name="payment_method" id="method-2"
                                             value="2" required>
                                         <label for="method-2" class="star">Ngân hàng</label>
                                     </div>
                                     <div class=""><input required type="radio" name="payment_method" id="method-3"
                                             value="3" required>
                                         <label for="method-3" class="star">Paypal</label>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
 

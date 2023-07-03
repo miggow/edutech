@@ -5,7 +5,7 @@ return [
         'momo' => 1,
     ],
     '0' => [
-        'name' => 'VNPOST',
+        'name' => 'VNPAY',
     ],
     '1'=> [
         'name' => 'MOMO',

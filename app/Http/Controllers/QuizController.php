@@ -67,10 +67,14 @@ class QuizController extends Controller
                     }
                 }
             }
-            return redirect()->back()->with('success', ['status' => 1, 'message' => 'Tạo bài quiz thành công!']);
+            \session()->flash('success', 'Tạo bài tập thành công.');
+
+            return redirect()->back();
         }
         else{
-            return redirect()->back()->with('success', ['status' => 0, 'message' => 'Vui lòng thêm câu hỏi cho bài kiểm tra!']);
+            \session()->flash('error', 'Tạo bài tập không thành công.');
+
+            return redirect()->back();
         }
     }
 
@@ -113,9 +117,8 @@ class QuizController extends Controller
         ]); 
         if($request->questions){
             Quiz::updateQuiz($quiz, $request->questions);
-        }
-        else{
-            dd('aaj');
+            \session()->flash('success', 'Sửa bài tập thành công.');
+            return redirect()->route('quiz.index', ['module_id' => $quiz->module_id]);
         }
     }
 

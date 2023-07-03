@@ -13,11 +13,13 @@ class FEController extends Controller
     public function index()
     {
         $courses = Course::all();
-        return view('frontend.home', compact('courses'));
+        $categories = Category::all();
+        $free = Course::where('price', 0)->get();
+        return view('frontend.home', compact('courses', 'categories', 'free'));
     }
     public function courseList(Request $request)
     {   
-       $categoryId = $request->input('category_id');
+        $categoryId = $request->input('category_id');
 
         // Lấy danh sách khóa học
         $courses = Course::query();

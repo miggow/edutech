@@ -1,12 +1,77 @@
 @extends('frontend.app')
 @section('content')
-    <div class="bg-navbar-theme ">
+    <div class="bg-navbar-theme h-100 ">
+        <section class="m-4 p-3">
+            <div class="tieudekhoahoc">
+                <h6>Danh sách các danh mục</h6>
+            </div>
+            <div class="boxtheloai row">
+                @foreach ($categories as $category)
+                    <div class="itemtheloai m-3 col-xl-2">
+                        <a href="{{ route('FE.course', ['category_id' => $category->id]) }}">{{ $category->name }}</a>
+                    </div>
+                @endforeach
 
-        <img src="{{ asset('assets/assets/img/backgrounds/papers.co-bf55-school-anime-illust-orange-minimal-simple-art-26-wallpaper.jpg') }}"
-            height="35%" width="100%" style="object-fit: cover" alt="...">
-        <hr>
+            </div>
+        </section>
+        {{-- Khóa học nổi bật --}}
+        <section class="m-4 p-3">
+            <div class="tieudekhoahoc">
+                <h6>Các khóa học nổi bật</h6>
+            </div>
+            <div class="boxkhoahocnb my-4 row">
+                @foreach ($courses as $course)
+                    <div class="itemkhoahocnb col-2" style="height: 250px;">
+                        <a class="h-100" href="{{ route('FE.course_detail', $course->id) }}">
+                            <div class="imgkhoahocnb"><img class="" src="{{ asset($course->image) }}"
+                                    alt="Card image cap"></div>
+                            <div class="tenkhnb">{{ $course->title }}</div>
+                            <div class="nguoidang">Giảng viên: {{ $course->instructor->name }} </div>
+                            <div class="danhgia">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            <div class="giakhoahoc">{{ number_format($course->price, 0, '', ',') }} đ
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+        @if (count($free) > 0)
+            <section class="m-4 p-3">
+                <div class="tieudekhoahoc">
+                    <h6>Các khóa học miễn phí</h6>
+                </div>
+                <div class="boxkhoahocnb my-4 row">
+                    @foreach ($free as $course)
+                        <div class="itemkhoahocnb col-2" style="height: 250px;">
+                            <a class="h-100" href="{{ route('FE.course_detail', $course->id) }}">
+                                <div class="imgkhoahocnb"><img src="{{ asset($course->image) }}" alt="Card image cap"></div>
+                                <div class="tenkhnb">{{ $course->title }}</div>
+                                <div class="nguoidang">Giảng viên: {{ $course->instructor->name }} </div>
+                                <div class="danhgia">
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                    <i class='bx bxs-star'></i>
+                                </div>
+                                <div class="giakhoahoc">Miễn phí
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+        {{-- Thể Loại --}}
         {{-- course list --}}
-        <section class="p-5">
+        {{-- <section class="p-5">
             <div class="row mx-0 justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title text-center position-relative mb-5">
@@ -43,6 +108,6 @@
                 @endforeach
 
             </div>
-        </section>
+        </section> --}}
     </div>
 @endsection

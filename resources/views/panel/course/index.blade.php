@@ -42,7 +42,8 @@
                                         <td>
                                             <strong>
                                                 {{-- <a href="{{ route('learn.index', $course->id) }}">{{ $course->title }}</a> --}}
-                                                <a href="{{ route('FE.course_detail', $course->id) }}">{{ $course->title }}</a>
+                                                <a
+                                                    href="{{ route('FE.course_detail', $course->id) }}">{{ $course->title }}</a>
                                             </strong>
                                             <div class="text-small">
                                                 {{ empty($course->category) ? '' : $course->category->name }}</div>
@@ -62,24 +63,18 @@
                                                 class="{{ $course->status == 1 ? 'badge bg-label-success me-1' : 'badge bg-label-warning me-1' }}">
                                                 {{ $course->status == 1 ? 'Đang hoạt động' : 'Ngưng hoạt động' }}</div>
                                         </td>
+
                                         <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown"><i
-                                                        class="bx bx-dots-vertical-rounded"></i></button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item "
-                                                        href="{{ route('course.edit', $course->id) }}"><i
-                                                            class="bx bx-edit-alt me-1"></i>Edit</a>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('module.index', $course->id) }}"><i
-                                                            class="bx bx-bookmarks me-1"></i>
-                                                        Module</a>
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('course.delete', $course->id) }}"><i
-                                                            class="bx bx-trash me-1"></i>
-                                                        Delete</a>
-                                                </div>
+                                            <div class="row">
+                                                <a class="col-1" title="Chỉnh sửa" href="{{ route('course.edit', $course->id) }}"><i
+                                                        class="bx bx-edit-alt"></i></a>
+                                                <a class="col-1" title="Module" href="{{ route('module.index', $course->id) }}"><i
+                                                        class="bx bx-bookmarks"></i>
+                                                </a>
+                                                <a class="col-1" title="Xóa"
+                                                    href="{{ route('course.delete', $course->id) }}"><i
+                                                        class="bx bx-trash"></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -215,22 +210,57 @@
     <script>
         ClassicEditor
             .create(document.querySelector('textarea[name="description"]'), {
-               toolbarGroups: [
-		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-		{ name: 'forms', groups: [ 'forms' ] },
-		'/',
-		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-		{ name: 'insert', groups: [ 'insert' ] },
-		'/',
-		{ name: 'styles', groups: [ 'styles' ] },
-		{ name: 'colors', groups: [ 'colors' ] },
-		{ name: 'tools', groups: [ 'tools' ] },
-		{ name: 'others', groups: [ 'others' ] },
-		{ name: 'about', groups: [ 'about' ] }
-	]
+                toolbarGroups: [{
+                        name: 'document',
+                        groups: ['mode', 'document', 'doctools']
+                    },
+                    {
+                        name: 'clipboard',
+                        groups: ['clipboard', 'undo']
+                    },
+                    {
+                        name: 'editing',
+                        groups: ['find', 'selection', 'spellchecker', 'editing']
+                    },
+                    {
+                        name: 'forms',
+                        groups: ['forms']
+                    },
+                    '/',
+                    {
+                        name: 'basicstyles',
+                        groups: ['basicstyles', 'cleanup']
+                    },
+                    {
+                        name: 'paragraph',
+                        groups: ['list', 'indent', 'blocks', 'align', 'bidi', 'paragraph']
+                    },
+                    {
+                        name: 'insert',
+                        groups: ['insert']
+                    },
+                    '/',
+                    {
+                        name: 'styles',
+                        groups: ['styles']
+                    },
+                    {
+                        name: 'colors',
+                        groups: ['colors']
+                    },
+                    {
+                        name: 'tools',
+                        groups: ['tools']
+                    },
+                    {
+                        name: 'others',
+                        groups: ['others']
+                    },
+                    {
+                        name: 'about',
+                        groups: ['about']
+                    }
+                ]
             })
             .then(editor => {
                 console.log(editor);

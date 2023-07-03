@@ -9,7 +9,7 @@
             <table class="table font-14 ">
                 <tr>
                     <th class="text-left">Tiêu đề khóa học</th>
-                    <th class="text-left">Giảng viên</th>
+                    <th class="text-left">Phương thức thanh toán</th>
                     <th>Giá</th>
                     <th>Ngày tạo</th>
                     <th>Trạng thái</th>
@@ -26,7 +26,7 @@
                                 <div class="text-small">
                                     {{ empty($order->course->category) ? '' : $order->course->category->name }}</div>
                             </td>
-                            <td class="text-left">{{ $order->course->user->name }}</td>
+                            <td>{{ config('payment_method')[$order->payment_method]['name'] }}</td>
                             <td>{{ $order->price == 0 ? 'Miễn phí' : number_format($order->price, 0, '', '.') }}
                                 VND
                             </td>

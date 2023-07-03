@@ -56,21 +56,14 @@
                                 @endforeach
 
 
-
-                                {{-- @foreach ($quizzes as $quiz)
+                                <small class="accordion-body">Dánh sách các bài tập </small>
+                                @foreach ($quizzes as $quiz)
                                     <div class="accordion-body">
-                                        @php
-                                            $completed = $quiz->completed(auth()->user()->id);
-                                        @endphp
-                                        @if ($completed || ($quiz->previousQuizCompleted(auth()->user()->id) ?? false))
                                             <a href="{{ route('learn.quiz', ['module_id' => $module, 'id' => $quiz->id]) }}"
                                                 target="blank">
                                                 {{ $quiz->name }}</a>
-                                        @else
-                                            {{ $quiz->name }} (Chưa hoàn thành)
-                                        @endif
                                     </div>
-                                @endforeach --}}
+                                @endforeach
 
 
                             </div>

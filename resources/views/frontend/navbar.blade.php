@@ -24,8 +24,6 @@
 
             <li class="mx-3"><a href="{{ route('home') }}">Trang chủ</a></li>
             <li class="mx-3"><a href="{{ route('FE.course') }}">Khóa học</a></li>
-            <li class="mx-3"><a href="#">Giảng viên</a></li>
-            <li class="mx-3"><a href="#">Về chúng tôi</a></li>
             <!-- User -->
             @if (Auth::check())
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">

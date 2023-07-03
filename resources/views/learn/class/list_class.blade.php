@@ -1,5 +1,6 @@
 @extends('learn.layout')
 @section('content')
+<div class="content-wrapper">
     <div class="row h-100">
         <div class="col-xl-12 p-3">
             <div class="nav-align-top ">
@@ -199,6 +200,8 @@
                 </div>
             </div>
         </div>
+    </div>
+
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

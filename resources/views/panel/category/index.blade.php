@@ -42,23 +42,19 @@
 
 
                                         <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item edit-category" data-bs-toggle="modal"
+                                            
+                                                <div class="row">
+                                                    <a class="col-1 edit-category " title="Chỉnh sửa" data-bs-toggle="modal"
                                                         data-bs-target="#edit-category" data-id="{{ $category->id }}"
                                                         data-name="{{ $category->name }}"><i
-                                                            class="bx bx-edit-alt me-1"></i>Edit</a>
+                                                            class="bx bx-edit-alt text-primary "></i></a>
 
-                                                    <a class="dropdown-item"
+                                                    <a class="col-1" title="Xóa"
                                                         href="{{ route('category.destroy', $category->id) }}"><i
-                                                            class="bx bx-trash me-1"></i>
-                                                        Delete</a>
+                                                            class="bx bx-trash "></i>
+                                                        </a>
                                                 </div>
-                                            </div>
+                                         
                                         </td>
                                     </tr>
                                 @endforeach
@@ -105,7 +101,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Tạo danh mục</h5>
+                <h5 class="modal-title" id="exampleModalLabel1">Sửa danh mục</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Question;
 use App\Answer;
+use App\Result;
 class Quiz extends Model
 {
     protected $fillable = ['name', 'module_id'];
@@ -39,12 +40,6 @@ class Quiz extends Model
                 ]);
             }
         }
-    }
-    public function completed($userId)
-    {
-        return App\Result::where('user_id', $userId)
-            ->where('quiz_id', $this->id)
-            ->exists();
     }
 
 }
