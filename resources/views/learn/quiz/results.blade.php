@@ -23,7 +23,7 @@
                                                 $answerStatus = '';
                                                 if (isset($results->results[$question->id])) {
                                                     if ($results->results[$question->id] == $item->id) {
-                                                        $answerStatus = $item->is_correct ? 'btn-outline-success' : 'btn-outline-danger';
+                                                        $answerStatus = $item->is_correct ? 'btn-outline-success dad' : 'btn-outline-danger das';
                                                     }
                                                 }
                                             @endphp
