@@ -352,6 +352,10 @@ input[type="radio"]:active+.design::after {
     height: 150px;
 
 }
+.imgkhoahocnb{
+    width: 100%;
+    height: 150px;
+}
 .tieudekhoahoc h6{
     font-weight: 700;
     line-height: 1.2;
@@ -385,4 +389,10 @@ input[type="radio"]:active+.design::after {
   .itemtheloai a{
     color: #fff;
   }
- 
+ /* dap an dung */
+ .dad{
+    background-color: #66FF00;
+ }
+ .das{
+    background-color: red;
+ }

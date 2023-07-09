@@ -17,9 +17,9 @@
                 <tbody class="table-border-bottom-0">
                     @foreach ($users as $user)
                         <tr>
-                            <td><a type="button" class="view" data-bs-toggle="modal"
-                                    data-bs-target="#view" data-name="{{ $user->name }}"
-                                    data-email="{{ $user->email }}" data-phone="{{ $user->phone }}"
+                            <td><a type="button" class="view" data-bs-toggle="modal" data-bs-target="#view"
+                                    data-name="{{ $user->name }}" data-email="{{ $user->email }}"
+                                    data-phone="{{ $user->phone }}"
                                     data-address="{{ $user->address }}">{{ $user->name }}</a></td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone ?? '' }}</td>
@@ -42,18 +42,17 @@
 
                             </td>
                             <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item edit-user" data-bs-toggle="modal"
-                                            data-bs-target="#edit-user" data-id="{{ $user->id }}"><i
-                                                class="bx bx-edit-alt me-1"></i>Edit</a>
+                                <div class="row">
 
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                            Delete</a>
+                                    <div class="col-1 mx-2">
+                                        <a class=" edit-user" title="Sửa" type="Sửa" data-bs-toggle="modal"
+                                            data-bs-target="#edit-user" data-id="{{ $user->id }}"><i
+                                                class="bx bx-edit-alt text-primary"></i></a>
+                                    </div>
+                                    <div class="col-1 mx-2">
+                                        <a class="col-1" title="Xóa" type="Xóa" href="javascript:void(0);">
+                                            <i class="bx bx-trash"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </td>
