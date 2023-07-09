@@ -39,12 +39,20 @@ class LearnController extends Controller
                 $points++;
             }
         }
-        $results=new Result();
-        $results->user_id= Auth::user()->id;
-        $results->quiz_id= $id;
-        $results->points=$points;
-        $results->results=$request->answers;
-        $results->save();
+        $check = Result::where('user_id', Auth::user()->id)->where('quiz_id', $id)->first();
+        if(!empty($check))
+        {
+            return redirect()->route('learn.results', $id);    
+        }
+        else{
+            $results=new Result();
+            $results->user_id= Auth::user()->id;
+            $results->quiz_id= $id;
+            $results->points=$points;
+            $results->results=$request->answers;
+            $results->save();
+        }
+        
         return redirect()->route('learn.results', $id);
     }
     

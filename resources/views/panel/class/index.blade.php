@@ -10,15 +10,6 @@
     <div class="card p-4">
         <h3 class="fw-bold py-3">Danh sách lớp học</h3>
         <div class="d-flex justify-content-between">
-            @if ($is_ad_ins)
-                <div class=" mb-4">
-                    <button type="button" class="create-class btn btn-outline-primary" data-bs-toggle="modal"
-                        data-bs-target="#create-class">
-                        <i class='bx bx-sm  bxs-folder-plus'></i> Thêm
-                    </button>
-                    {{-- <a class="create-category btn btn-outline-primary text-center" data-bs-toggle="modal" data-bs-target="#create-category" ><i class='bx bx-md  bxs-folder-plus'></i> Thêm</a> --}}
-                </div>
-            @endif
             <div class=" mb-4">
                 <button type="button" class="joinclass btn btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#joinclass">
@@ -79,7 +70,7 @@
 
     </div>
 @endsection
-<div class="modal fade" id="create-class" tabindex="-1" aria-hidden="true">
+{{-- <div class="modal fade" id="create-class" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -122,7 +113,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="modal fade" id="joinclass" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

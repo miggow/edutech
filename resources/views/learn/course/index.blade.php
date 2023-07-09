@@ -44,7 +44,12 @@
                                 @endphp
                                 @foreach ($lessons as $index => $lesson)
                                     <div class="accordion-body lesson_id" data-lesson-id="{{ $lesson->id }}">
-                                        @if ($index == 0 || $lesson->isCompleted())
+                                        @php
+                                            $previousLesson = $lesson->getPreviousLesson();
+                                            $previousLessonCompleted = $previousLesson ? $previousLesson->isCompleted() : true;
+                                            $lessonCompleted = $lesson->isCompleted();
+                                        @endphp
+                                        @if ($previousLessonCompleted || $lessonCompleted)
                                             <a href="#"
                                                 onclick="changeVideoSource('{{ asset($lesson->video) }}'); saveLessonId({{ $lesson->id }})">
                                                 {{ $lesson->name }}</a>
@@ -55,17 +60,14 @@
                                     </div>
                                 @endforeach
 
-
-                                <small class="accordion-body">Dánh sách các bài tập </small>
+                                <small class="accordion-body">Danh sách các bài tập</small>
                                 @foreach ($quizzes as $quiz)
                                     <div class="accordion-body">
-                                            <a href="{{ route('learn.quiz', ['module_id' => $module, 'id' => $quiz->id]) }}"
-                                                target="blank">
-                                                {{ $quiz->name }}</a>
+                                        <a href="{{ route('learn.quiz', ['module_id' => $module, 'id' => $quiz->id]) }}"
+                                            target="blank">
+                                            {{ $quiz->name }}</a>
                                     </div>
                                 @endforeach
-
-
                             </div>
                         </div>
                     @endforeach

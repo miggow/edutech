@@ -25,7 +25,7 @@
                                     </div>
                                 @endif
                                 <label class="input-label">video:</label>
-                                <input required name="video" type="file" class="form-control">
+                                <input  name="video" type="file" class="form-control">
                             </div>
                         </div>
                         <div class="row">
