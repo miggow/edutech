@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Course;
+use App\Auth;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -56,5 +57,17 @@ class User extends Authenticatable
     public function classrooms()
     {
         return $this->belongsToMany(ClassRoom::class);
+    }
+    public function checkCourse()
+    {
+        $user_id = auth()->id();
+
+        $courses = Course::where('instructor_id', $user_id)->get();
+
+        if ($courses->count() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

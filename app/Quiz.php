@@ -20,6 +20,10 @@ class Quiz extends Model
     {
         return $this->hasMany(Question::class,'quiz_id');
     }
+    public function results()
+    {
+        return $this->hasMany(Result::class);
+    }
     static function updateQuiz($quiz, $val){
         if ($quiz->questions) {
             foreach ($quiz->questions as $question) {

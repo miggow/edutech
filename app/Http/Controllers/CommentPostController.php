@@ -14,13 +14,12 @@ class CommentPostController extends Controller
         $comment->content = $request->binhluan;
         $comment->post_id = $request->post_id;
         $comment->save();
-        session(['current_tab' => 'tab-id']);
         return redirect()->back();
     }
     public function delete($id)
     {
         $post = CommentPost::findOrFail($id);
         $post->delete();
-        return back();
+        return redirect()->back();
     }
 }

@@ -1,4 +1,6 @@
 @php
+    $user = Auth::user();
+    $check = $user->checkCourse();
     if (Auth::user()->role == 2) {
         $isAdmin = 1;
     } else {
@@ -31,7 +33,7 @@
 
 
         {{-- Khóa học --}}
-        @if ($isAdmin)
+        @if ($isAdmin || $check)
             <li class="menu-header small text-uppercase">
                 <span class="menu-header-text">Học vấn</span>
             </li>
@@ -65,13 +67,17 @@
 
         {{-- Order --}}
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Order</span>
+            <span class="menu-header-text">Khóa học</span>
         </li>
 
         <li class="menu-item">
             <a href="{{ route('order.index') }}" class="menu-link">
                 <i class='menu-icon tf-icons bx bxs-store'></i>
-                <div data-i18n="Account Settings">Khóa học đã mua</div>
+                <div data-i18n="Account Settings">Khóa học của tôi</div>
+            </a>
+            <a href="{{ route('quiz.done') }}" class="menu-link">
+                <i class='menu-icon tf-icons bx bx-food-menu'></i>
+                <div data-i18n="Account Settings">Bài tập đã hoàn thành</div>
             </a>
         </li>
 

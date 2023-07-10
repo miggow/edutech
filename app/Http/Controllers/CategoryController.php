@@ -81,6 +81,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->fill($request->only(['name']));
         $category->save();
+        \session()->flash('success', 'Cập nhật thành công!');
         return redirect()->back();
     }
 

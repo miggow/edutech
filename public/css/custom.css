@@ -392,7 +392,9 @@ input[type="radio"]:active+.design::after {
  /* dap an dung */
  .dad{
     background-color: #66FF00;
+    color:#000 !important
  }
  .das{
     background-color: red;
+    color: #000 !important
  }

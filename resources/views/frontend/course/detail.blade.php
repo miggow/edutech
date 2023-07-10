@@ -82,10 +82,10 @@
                         <h6 class="text-white my-3">English</h6>
                     </div> --}}
 
-                    <div class="d-flex justify-content-between border-bottom px-4">
+                    {{-- <div class="d-flex justify-content-between border-bottom px-4">
                         <h6 class="text-white my-3">Bài giảng</h6>
                         <h6 class="text-white my-3">{{ count($course->lessons) }}</h6>
-                    </div>
+                    </div> --}}
                     <div class="d-flex justify-content-between border-bottom px-4">
                         <h6 class="text-white my-3">Giá:</h6>
                         <h6 class="text-white my-3">{{ number_format($course->price, 0, '', '.') }} VND</h6>

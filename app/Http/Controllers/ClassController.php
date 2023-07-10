@@ -54,7 +54,8 @@ class ClassController extends Controller
         }
         $class->user_id = Auth::user()->id;
         $class->save();
-        return redirect()->back()->with('success', ['status' => 1, 'message' => 'Tạo lớp học thành công!']);
+        \session()->flash('success', 'Tạo lớp học thành công!');
+        return redirect()->back();
     }
 
     /**
@@ -113,11 +114,11 @@ class ClassController extends Controller
         if ($classRoom) {
             $user = auth()->user();
             $user->classRooms()->attach($classRoom->id);
-
-            return redirect()->back()->with('success', ['status' => 1, 'message' => 'Tham gia lớp học thành công!']);
+            \session()->flash('success', 'Tham gia lớp học thành công!');
+            return redirect()->back();
         }
-
-        return redirect()->back()->with('success', ['status' => 0, 'message' => 'Không đúng!']);
+        \session()->flash('error', 'Không đúng!');
+        return redirect()->back();
 
         
     }
@@ -135,8 +136,8 @@ class ClassController extends Controller
 
         // Lưu tệp đính kèm vào thư mục tùy chỉnh (ví dụ: public/documents)
         $file->storeAs('public/documents', $fileName);
-
-        return redirect()->back()->with('success', 'Đăng tải thành công.');
+        \session()->flash('success', 'Đăng tải thành công.');
+        return redirect()->back();
     }
     
 }

@@ -34,8 +34,6 @@ Route::group(['middleware' => 'auth'], function () {
                     Route::get('/','UserController@index')->name('user.index');
                     Route::get('list-user', 'UserController@list')->name('user.list');
                     Route::post('/edit/{id}', 'UserController@UpdateUser')->name('user.update');
-                    Route::get('settings','UserController@settings')->name('user.settings');
-                    Route::post('settings', 'UserController@update_settings')->name('user.settings.update');
             });
             Route::prefix('category')->group(function(){
                 Route::get('/', 'CategoryController@index')->name('category.index');
@@ -70,6 +68,9 @@ Route::group(['middleware' => 'auth'], function () {
         });
         
     });
+    Route::get('list-quiz-done', 'DoneQuizController@index')->name('quiz.done');
+    Route::get('settings','UserController@settings')->name('user.settings');
+    Route::post('settings', 'UserController@update_settings')->name('user.settings.update');
     //payment
     Route::post('store/{id}', 'OrderController@store')->name('order.store');
     Route::get('thanks', 'OrderController@thanks')->name('order.thanks');
