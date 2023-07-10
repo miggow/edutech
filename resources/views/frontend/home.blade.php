@@ -23,7 +23,7 @@
                 @foreach ($courses as $course)
                  <div class="itemkhoahocnb col-2">
                     <a class="h-100" href="{{ route('FE.course_detail', $course->id) }}">
-                        <div class="imgkhoahocnb"><img class="" src="{{ $course->image }}"
+                        <div class="imgkhoahocnb"><img style="object-fit: cover" class="" src="{{ $course->image }}"
                                 alt="Card image cap"></div>
                         <div class="tenkhnb">{{ $course->title }}</div>
                         <div class="nguoidang">{{ $course->instructor->name }}</div>

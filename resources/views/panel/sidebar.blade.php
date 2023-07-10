@@ -39,13 +39,13 @@
             </li>
 
             <li class="menu-item">
-                <a href="{{ route('course.index') }}" class="menu-link">
+                <a href="{{ route('course.index') }}" class="menu-link {{  request()->is('panel/course') ? 'active' : ''  }}">
                     <i class="menu-icon tf-icons bx bxs-book"></i>
                     <div data-i18n="Account Settings">Khóa học</div>
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ route('category.index') }}" class="menu-link">
+                <a href="{{ route('category.index') }}" class="menu-link  {{  request()->is('panel/category') ? 'active' : ''  }}">
                     <i class='menu-icon tf-icons bx bx-category'></i>
                     <div data-i18n="Account">Danh mục</div>
                 </a>
@@ -59,7 +59,7 @@
         </li>
 
         <li class="menu-item">
-            <a href="{{ route('class.index') }}" class="menu-link">
+            <a href="{{ route('class.index') }}" class="menu-link {{  request()->is('class') ? 'active' : ''  }}">
                 <i class='menu-icon tf-icons bx bxs-book-open'></i>
                 <div data-i18n="Account Settings">Lớp học</div>
             </a>
@@ -71,11 +71,11 @@
         </li>
 
         <li class="menu-item">
-            <a href="{{ route('order.index') }}" class="menu-link">
+            <a href="{{ route('order.index') }}" class="menu-link {{  request()->is('order') ? 'active' : ''  }}">
                 <i class='menu-icon tf-icons bx bxs-store'></i>
                 <div data-i18n="Account Settings">Khóa học của tôi</div>
             </a>
-            <a href="{{ route('quiz.done') }}" class="menu-link">
+            <a href="{{ route('quiz.done') }}" class="menu-link {{  request()->is('list-quiz-done') ? 'active' : ''  }}">
                 <i class='menu-icon tf-icons bx bx-food-menu'></i>
                 <div data-i18n="Account Settings">Bài tập đã hoàn thành</div>
             </a>
@@ -86,7 +86,7 @@
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Người dùng</span></li>
             <!-- Cards -->
             <li class="menu-item">
-                <a href="{{ route('user.index') }}" class="menu-link">
+                <a href="{{ route('user.index') }}" class="menu-link {{  request()->is('panel/user') ? 'active' : ''  }}">
                     <i class="menu-icon tf-icons bx bx-user"></i>
                     <div data-i18n="Basic">Danh sách người dùng</div>
                 </a>
@@ -99,7 +99,7 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
         <li class="menu-item">
             {{-- {{ route('settings', \Auth::user()->id) }} --}}
-            <a href="{{ route('user.settings') }}" class="menu-link">
+            <a href="{{ route('user.settings') }}" class="menu-link {{  request()->is('settings') ? 'active' : ''  }}">
                 <i class="menu-icon tf-icons bx bx-cog"></i>
                 <div data-i18n="Support">Cài đặt</div>
             </a>
