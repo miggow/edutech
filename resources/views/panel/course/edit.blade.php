@@ -72,7 +72,7 @@
                                             <label class="input-label">Ảnh thu nhỏ (thumbnail)</label>
                                             <div class="input-group">
                                                 <div class="form-group">
-                                                    <input required type="file" name="image" class="form-control"
+                                                    <input  type="file" name="image" class="form-control"
                                                         id="image">
                                                 </div>
                                             </div>
@@ -89,7 +89,7 @@
                                             <label class="input-label">Ảnh bìa</label>
                                             <div class="input-group">
                                                 <div class="form-group">
-                                                    <input required type="file" value="{{ asset($course->background) }}"
+                                                    <input  type="file" value="{{ asset($course->background) }}"
                                                         name="background" class="form-control" id="background">
 
                                                 </div>
@@ -108,7 +108,7 @@
                                             @endif
                                             <div class="input-group">
                                                 <div class="form-group">
-                                                    <input required type="file" name="video" class="form-control" id="video"
+                                                    <input  type="file" name="video" class="form-control" id="video"
                                                         value="{{ $course->video ?? '' }}">
                                                 </div>
 

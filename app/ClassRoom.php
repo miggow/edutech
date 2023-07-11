@@ -24,5 +24,7 @@ class ClassRoom extends Model
     {
         return $this->hasMany(Document::class, 'classroom_id');
     }
-    
+    public function course(){
+        return $this->belongsTo(Course::class, 'course_id');
+    }   
 }

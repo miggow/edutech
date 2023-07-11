@@ -9,7 +9,7 @@
             <table class="table font-14 ">
                 <tr>
                     <th class="text-left">Tiêu đề khóa học</th>
-                    <th class="text-left">Phương thức thanh toán</th>
+                    <th class="text-left">Tiến trình học</th>
                     <th>Giá</th>
                     <th>Ngày tạo</th>
                     <th>Trạng thái</th>
@@ -26,7 +26,25 @@
                                 <div class="text-small">
                                     {{ empty($order->course->category) ? '' : $order->course->category->name }}</div>
                             </td>
-                            <td>{{ config('payment_method')[$order->payment_method]['name'] }}</td>
+                            @php
+                                $course = \App\Course::find($order->course->id);
+                                $lessonCount = \DB::table('courses')
+                                ->join('modules', 'courses.id', '=', 'modules.course_id')
+                                ->join('lessons', 'modules.id', '=', 'lessons.module_id')
+                                ->where('courses.id', $order->course->id)
+                                ->count('lessons.id');
+
+                                $completedLessons = \DB::table('lessons_completed')
+                                ->join('lessons', 'lessons_completed.lesson_id', '=', 'lessons.id')
+                                ->join('modules', 'lessons.module_id', '=', 'modules.id')
+                                ->join('courses', 'modules.course_id', '=', 'courses.id')
+                                ->where('lessons_completed.user_id', Auth::id())
+                                ->where('courses.id', $order->course->id)
+                                ->select('lessons.*')
+                                ->get();
+                                // dd();
+                            @endphp
+                            <td>{{ $lessonCount == 0 ? '0' :(count($completedLessons) / $lessonCount)*100}} %</td>
                             <td>{{ $order->price == 0 ? 'Miễn phí' : number_format($order->price, 0, '', '.') }}
                                 VND
                             </td>

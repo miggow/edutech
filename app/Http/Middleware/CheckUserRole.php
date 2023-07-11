@@ -20,7 +20,7 @@ class CheckUserRole
         $userRole = Auth::user()->role; // Giả sử trường role được lưu trong bảng users
         
         // Kiểm tra vai trò và chuyển tiếp hoặc từ chối truy cập
-        if ($userRole == 2) {
+        if ($userRole == 2 || $userRole == 1) {
             return $next($request);
         }
         

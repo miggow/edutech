@@ -7,7 +7,7 @@ use App\LessonsCompleted;
 use Auth;
 class Lesson extends Model
 {
-    protected $filltable = 'lessons';
+    protected $table = 'lessons';
 
     protected $fillable = ['name', 'description','video','module_id'];
     

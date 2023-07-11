@@ -19,7 +19,7 @@ class Course extends Model
         'category_id'
         
     ];
-    protected $filltable = 'courses';
+    protected $table = 'courses';
 
     public function category()
     {
@@ -48,5 +48,9 @@ class Course extends Model
     public function orders()
     {
         return $this->hasMany(Order::class,'course_id');
+    }
+    public function classroom()
+    {
+        return $this->hasOne(ClassRoom::class,'course_id');
     }
 }

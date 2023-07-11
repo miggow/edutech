@@ -44,7 +44,10 @@ class CourseController extends Controller
         $class->description = $request->description;
         $class->course_id = $course->id;
         $class->save();
+        // dd($class->id);
         \session()->flash('success', 'Tạo khóa học thành công.');
+        $user = User::find($request->instructor_id);
+        $user->classRooms()->attach($class->id);
 
         return redirect()->back();
     }
@@ -72,7 +75,9 @@ class CourseController extends Controller
         }
         $course->fill($request->only(['instructor_id',' category_id', 'title','price','description']));
         $course->save();
-        return redirect()->route('course.index')->with('success', ['status' => 1, 'message' => 'Cập nhật thành công!']);
+        \session()->flash('success', 'Cập nhật thành công!');
+
+        return redirect()->route('course.index');
     }
     public function destroy($id)
     {

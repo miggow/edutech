@@ -21,12 +21,28 @@
                                 <div class="tenkhnb">{{ $course->title }}</div>
                                 <div class="nguoidang">Giảng viên: {{ $course->instructor->name }} </div>
                                 <div class="danhgia">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </div>
+                                 @php
+                                    $ratings = \App\Rating::where('course_id', $course->id)->get();
+                                    $sum = $ratings->sum('rating');
+                                    $count = $ratings->count();
+                                    if ($count == 0) {
+                                        $avg = 0;
+                                    } else {
+                                        $avg = $sum / $count;
+                                    }
+                                    
+                                @endphp
+                                @if ($avg == 0)
+                                    <br>
+                                @else
+                                    @php
+                                        $numOfStars = (int) floor($avg); 
+                                    @endphp
+                                    @for ($i = 0; $i < $numOfStars; $i++)
+                                        <i class='bx bxs-star'></i>
+                                    @endfor
+                                @endif
+                            </div>
                                 <div class="giakhoahoc">{{ number_format($course->price, 0, '', ',') }} đ
                                 </div>
                             </a>

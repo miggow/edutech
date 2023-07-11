@@ -1,6 +1,5 @@
 @extends('frontend.app')
 @section('content')
-
     <div class="bg-navbar-theme h-100 ">
         <section class="m-4 p-3">
             <div class="tieudekhoahoc">
@@ -21,25 +20,42 @@
             </div>
             <div class="boxkhoahocnb row">
                 @foreach ($courses as $course)
-                 <div class="itemkhoahocnb col-2">
-                    <a class="h-100" href="{{ route('FE.course_detail', $course->id) }}">
-                        <div class="imgkhoahocnb"><img style="object-fit: cover" class="" src="{{ $course->image }}"
-                                alt="Card image cap"></div>
-                        <div class="tenkhnb">{{ $course->title }}</div>
-                        <div class="nguoidang">{{ $course->instructor->name }}</div>
-                        <div class="danhgia">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                        </div>
-                        <div class="giakhoahoc">{{ $course->price > 0 ? number_format($course->price, 0, '', ',').'đ' : 'Miễn phí' }} 
-                        </div>
-                    </a>
-                </div>
+                    <div class="itemkhoahocnb col-2">
+                        <a class="h-100" href="{{ route('FE.course_detail', $course->id) }}">
+                            <div class="imgkhoahocnb"><img style="object-fit: cover" class=""
+                                    src="{{ $course->image }}" alt="Card image cap"></div>
+                            <div class="tenkhnb">{{ $course->title }}</div>
+                            <div class="nguoidang">{{ $course->instructor->name }}</div>
+                            <div class="danhgia">
+                                 @php
+                                    $ratings = \App\Rating::where('course_id', $course->id)->get();
+                                    $sum = $ratings->sum('rating');
+                                    $count = $ratings->count();
+                                    if ($count == 0) {
+                                        $avg = 0;
+                                    } else {
+                                        $avg = $sum / $count;
+                                    }
+                                    
+                                @endphp
+                                @if ($avg == 0)
+                                    <br>
+                                @else
+                                    @php
+                                        $numOfStars = (int) floor($avg); 
+                                    @endphp
+                                    @for ($i = 0; $i < $numOfStars; $i++)
+                                        <i class='bx bxs-star'></i>
+                                    @endfor
+                                @endif
+                            </div>
+                            <div class="giakhoahoc">
+                                {{ $course->price > 0 ? number_format($course->price, 0, '', ',') . 'đ' : 'Miễn phí' }}
+                            </div>
+                        </a>
+                    </div>
                 @endforeach
-               
+
             </div>
         </section>
         <section class="m-4 p-3">
@@ -48,29 +64,45 @@
             </div>
             <div class="boxkhoahocnb row">
                 @foreach ($free as $course)
-                 <div class="itemkhoahocnb col-2">
-                    <a class="h-100" href="{{ route('FE.course_detail', $course->id) }}">
-                        <div class="imgkhoahocnb"><img class="" src="{{ $course->image }}"
-                                alt="Card image cap"></div>
-                        <div class="tenkhnb">{{ $course->title }}</div>
-                        <div class="nguoidang">{{ $course->instructor->name }}</div>
-                        <div class="danhgia">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                        </div>
-                        <div class="giakhoahoc">Miễn phí
-                        </div>
-                    </a>
-                </div>
+                    <div class="itemkhoahocnb col-2">
+                        <a class="h-100" href="{{ route('FE.course_detail', $course->id) }}">
+                            <div class="imgkhoahocnb"><img class="" src="{{ $course->image }}" alt="Card image cap">
+                            </div>
+                            <div class="tenkhnb">{{ $course->title }}</div>
+                            <div class="nguoidang">{{ $course->instructor->name }}</div>
+                            <div class="danhgia">
+                                 @php
+                                    $ratings = \App\Rating::where('course_id', $course->id)->get();
+                                    $sum = $ratings->sum('rating');
+                                    $count = $ratings->count();
+                                    if ($count == 0) {
+                                        $avg = 0;
+                                    } else {
+                                        $avg = $sum / $count;
+                                    }
+                                    
+                                @endphp
+                                @if ($avg == 0)
+                                    <br>
+                                @else
+                                    @php
+                                        $numOfStars = (int) floor($avg); 
+                                    @endphp
+                                    @for ($i = 0; $i < $numOfStars; $i++)
+                                        <i class='bx bxs-star'></i>
+                                    @endfor
+                                @endif
+                            </div>
+                            <div class="giakhoahoc">Miễn phí
+                            </div>
+                        </a>
+                    </div>
                 @endforeach
-               
+
             </div>
         </section>
         {{-- Thể Loại --}}
-        
+
         {{-- course list --}}
         {{-- <section class="p-5">
             <div class="row mx-0 justify-content-center">

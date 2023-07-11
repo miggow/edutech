@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $fillable = ['user_id', 'course_id', 'payment_method'];
 
-    protected $filltable = 'orders';
+    protected $table = 'orders';
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id');

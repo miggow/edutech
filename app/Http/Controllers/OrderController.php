@@ -7,6 +7,7 @@ use Auth;
 use App\Course;
 use App\Order;
 use Str;
+use DB;
 use App\ClassRoom;
 
 class OrderController extends Controller
@@ -38,14 +39,19 @@ class OrderController extends Controller
                 $order->price = $request->price;
                 $order->payment_method = $request->payment_method;
                 $order->save();
-                
-                // dd('haha');
-                $classRoom = ClassRoom::where('course_id', $request->course_id)->first();
-
-                if ($classRoom) {
-                    $user = auth()->user();
-                    $user->classRooms()->attach($classRoom->id);
+                $class = ClassRoom::where('course_id', $request->course_id)->first();
+                // dd($class);
+                if($class){
+                    $users = DB::table('class_room_user')
+                    ->where('class_room_id', '=', $class->id)
+                    ->where('user_id', Auth::id())
+                    ->first();
+                    if (empty($users)) {
+                        $user = auth()->user();
+                        $user->classRooms()->attach($class->id);
+                    }
                 }
+                
 
             }
         }

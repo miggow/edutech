@@ -15,10 +15,13 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="text-right">
-                            <button type="button" class="create-course btn btn-outline-primary" data-bs-toggle="modal"
-                                data-bs-target="#create-course">
-                                <i class='bx bx-sm  bxs-folder-plus'></i> Thêm
-                            </button>
+                            @if (auth()->user()->role == 2)
+                                <button type="button" class="create-course btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#create-course">
+                                    <i class='bx bx-sm  bxs-folder-plus'></i> Thêm
+                                </button>
+                            @endif
+
                             {{-- <a class="create-category btn btn-outline-primary text-center" data-bs-toggle="modal" data-bs-target="#create-category" ><i class='bx bx-md  bxs-folder-plus'></i> Thêm</a> --}}
                         </div>
                         {{-- @if ($authUser->can('admin_webinars_export_excel')) --}}
@@ -38,46 +41,96 @@
                                     <th width="120">Hành động</th>
                                 </tr>
                                 @foreach ($courses as $course)
-                                    <tr>
-                                        <td>
-                                            <strong>
-                                                {{-- <a href="{{ route('learn.index', $course->id) }}">{{ $course->title }}</a> --}}
-                                                <a
-                                                    href="{{ route('FE.course_detail', $course->id) }}">{{ $course->title }}</a>
-                                            </strong>
-                                            <div class="text-small">
-                                                {{ empty($course->category) ? '' : $course->category->name }}</div>
-                                        </td>
-                                        <td class="text-left">{{ $course->user->name }}</td>
-                                        <td>{{ $course->price == 0 ? 'Miễn phí' : number_format($course->price, 0, '', '.') }}
-                                            VND
-                                        </td>
-                                        <td class="font-12">
-                                            <a href="#" target="_blank" class="">3</a>
-                                        </td>
-                                        <td class="font-12">
-                                            {{ \Carbon\Carbon::parse($course->created_at)->format('d/m/Y') }}</td>
+                                @if (auth()->user()->role == 1)
+                                    @if ($course->instructor_id == auth()->user()->id)
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    {{-- <a href="{{ route('learn.index', $course->id) }}">{{ $course->title }}</a> --}}
+                                                    <a
+                                                        href="{{ route('FE.course_detail', $course->id) }}">{{ $course->title }}</a>
+                                                </strong>
+                                                <div class="text-small">
+                                                    {{ empty($course->category) ? '' : $course->category->name }}</div>
+                                            </td>
+                                            <td class="text-left">{{ $course->user->name }}</td>
+                                            <td>{{ $course->price == 0 ? 'Miễn phí' : number_format($course->price, 0, '', '.') }}
+                                                VND
+                                            </td>
+                                            <td class="font-12">
+                                                <a href="#" class="">{{ count($course->orders) }}</a>
+                                            </td>
+                                            <td class="font-12">
+                                                {{ \Carbon\Carbon::parse($course->created_at)->format('d/m/Y') }}</td>
 
-                                        <td>
-                                            <div
-                                                class="{{ $course->status == 1 ? 'badge bg-label-success me-1' : 'badge bg-label-warning me-1' }}">
-                                                {{ $course->status == 1 ? 'Đang hoạt động' : 'Ngưng hoạt động' }}</div>
-                                        </td>
+                                            <td>
+                                                <div
+                                                    class="{{ $course->status == 1 ? 'badge bg-label-success me-1' : 'badge bg-label-warning me-1' }}">
+                                                    {{ $course->status == 1 ? 'Đang hoạt động' : 'Ngưng hoạt động' }}</div>
+                                            </td>
 
-                                        <td>
-                                            <div class="row">
-                                                <a class="col-1" title="Chỉnh sửa" href="{{ route('course.edit', $course->id) }}"><i
-                                                        class="bx bx-edit-alt"></i></a>
-                                                <a class="col-1" title="Module" href="{{ route('module.index', $course->id) }}"><i
-                                                        class="bx bx-bookmarks"></i>
-                                                </a>
-                                                <a class="col-1" title="Xóa"
-                                                    href="{{ route('course.delete', $course->id) }}"><i
-                                                        class="bx bx-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            <td>
+                                                <div class="row">
+                                                    <a class="col-1" title="Chỉnh sửa"
+                                                        href="{{ route('course.edit', $course->id) }}"><i
+                                                            class="bx bx-edit-alt"></i></a>
+                                                    <a class="col-1" title="Module"
+                                                        href="{{ route('module.index', $course->id) }}"><i
+                                                            class="bx bx-bookmarks"></i>
+                                                    </a>
+                                                    <a class="col-1" title="Xóa"
+                                                        href="{{ route('course.delete', $course->id) }}"><i
+                                                            class="bx bx-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @else
+                                <tr>
+                                            <td>
+                                                <strong>
+                                                    {{-- <a href="{{ route('learn.index', $course->id) }}">{{ $course->title }}</a> --}}
+                                                    <a
+                                                        href="{{ route('FE.course_detail', $course->id) }}">{{ $course->title }}</a>
+                                                </strong>
+                                                <div class="text-small">
+                                                    {{ empty($course->category) ? '' : $course->category->name }}</div>
+                                            </td>
+                                            <td class="text-left">{{ $course->user->name }}</td>
+                                            <td>{{ $course->price == 0 ? 'Miễn phí' : number_format($course->price, 0, '', '.') }}
+                                                VND
+                                            </td>
+                                            <td class="font-12">
+                                                <a href="#" class="">{{ count($course->orders) }}</a>
+                                            </td>
+                                            <td class="font-12">
+                                                {{ \Carbon\Carbon::parse($course->created_at)->format('d/m/Y') }}</td>
+
+                                            <td>
+                                                <div
+                                                    class="{{ $course->status == 1 ? 'badge bg-label-success me-1' : 'badge bg-label-warning me-1' }}">
+                                                    {{ $course->status == 1 ? 'Đang hoạt động' : 'Ngưng hoạt động' }}</div>
+                                            </td>
+
+                                            <td>
+                                                <div class="row">
+                                                    <a class="col-1" title="Chỉnh sửa"
+                                                        href="{{ route('course.edit', $course->id) }}"><i
+                                                            class="bx bx-edit-alt"></i></a>
+                                                    <a class="col-1" title="Module"
+                                                        href="{{ route('module.index', $course->id) }}"><i
+                                                            class="bx bx-bookmarks"></i>
+                                                    </a>
+                                                    <a class="col-1" title="Xóa"
+                                                        href="{{ route('course.delete', $course->id) }}"><i
+                                                            class="bx bx-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                @endif
+                                    
                                 @endforeach
 
 

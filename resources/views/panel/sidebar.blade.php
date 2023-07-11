@@ -44,13 +44,16 @@
                     <div data-i18n="Account Settings">Khóa học</div>
                 </a>
             </li>
-            <li class="menu-item">
+            @if (auth()->user()->role == 2)
+                <li class="menu-item">
                 <a href="{{ route('category.index') }}" class="menu-link  {{  request()->is('panel/category') ? 'active' : ''  }}">
                     <i class='menu-icon tf-icons bx bx-category'></i>
                     <div data-i18n="Account">Danh mục</div>
                 </a>
                 </a>
             </li>
+            @endif
+            
         @endif
 
         {{-- Lớp học --}}
